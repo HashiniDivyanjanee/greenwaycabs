@@ -1,0 +1,7 @@
+{
+  "name": "Greenway Travel & Cab Service",
+  "description": "Premium travel and taxi booking service in Sri Lanka with a wide range of vehicles for all your journey needs.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
