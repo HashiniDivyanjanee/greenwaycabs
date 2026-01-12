@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import {
+  FaBars, FaTimes
+} from "react-icons/fa";
 const Navbar = ({ currentPage, onNavigate }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,7 +46,7 @@ const Navbar = ({ currentPage, onNavigate }) => {
       </div>
 
    <button className="md:hidden text-2xl p-2" onClick={() => setIsOpen(!isOpen)}>
-        <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+        <i className={`fa-solid ${isOpen ? <FaTimes/> : <FaBars/>}`}></i>
       </button>
 
       {isOpen && (

@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'greenway-cache-v2';
+const CACHE_NAME = 'greenway-cache-v4';
 const urlsToCache = [
   '/',
   '/index.html',

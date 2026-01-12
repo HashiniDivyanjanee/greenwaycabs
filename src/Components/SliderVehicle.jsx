@@ -46,7 +46,7 @@ const vehiclesData = [
 ];
 const kmOptions = [1, 2, 3, 4, 5];
 
-const VehicleCard = ({ vehicle }) => {
+const SliderVehicleCard = ({ vehicle }) => {
   const [selectedKm, setSelectedKm] = useState(1);
   const currentPrice = vehicle.basePrice + (selectedKm - 1) * 200;
 
@@ -99,7 +99,7 @@ const VehicleCard = ({ vehicle }) => {
   );
 };
 
-const FeaturedVehicles = () => {
+const SliderVehicle = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
@@ -188,7 +188,7 @@ const FeaturedVehicles = () => {
               className="flex-shrink-0 px-2 md:px-4" 
               style={{ width: `${100 / visibleCount}%` }}
             >
-              <VehicleCard vehicle={v} />
+              <SliderVehicleCard vehicle={v} />
             </div>
           ))}
         </div>
@@ -211,4 +211,4 @@ const FeaturedVehicles = () => {
   );
 };
 
-export default FeaturedVehicles;
+export default SliderVehicle;

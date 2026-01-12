@@ -10,8 +10,8 @@ const steps = [
 
 const RentalProcess = () => {
   return (
-    <section className="py-16 md:py-20 px-6 text-center">
-      <h2 className="text-2xl md:text-3xl font-bold mb-2">
+    <section className="bg-gray-50 py-16 md:py-20 px-6 text-center">
+      <h2 className="text-2xl md:text-4xl font-black mb-2 uppercase">
         How it <span className="text-yellow-500">Works</span>
       </h2>
 
@@ -26,13 +26,13 @@ const RentalProcess = () => {
           return (
             <div
               key={idx}
-              className="bg-gray-50 p-6 md:p-8 rounded-2xl relative group hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-yellow-100"
+              className="bg-gray-200 p-6 md:p-8 rounded-2xl relative group hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-yellow-100"
             >
               <div className="flex justify-between items-start mb-6">
                 {/* ✅ Icon */}
                 <Icon className="text-3xl md:text-4xl text-yellow-500" />
 
-                <span className="text-3xl md:text-4xl font-bold text-gray-200 group-hover:text-yellow-100 transition-colors">
+                <span className="text-3xl md:text-4xl font-bold text-gray-500 group-hover:text-yellow-100 transition-colors">
                   {step.id}
                 </span>
               </div>

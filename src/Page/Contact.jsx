@@ -1,0 +1,92 @@
+import React from 'react';
+import PageBanner from '../Components/PageBanner';
+import {
+FaPhoneVolume, FaLocationArrow
+} from "react-icons/fa";
+
+const Contact = () => {
+  return (
+    <div className="bg-white">
+      <PageBanner 
+        title="LET'S CONNECT" 
+        subtitle="Contact Us" 
+        bgImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+      />
+
+      <div className="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          <div>
+            <span className="text-yellow-500 font-black text-xs md:text-sm uppercase tracking-[0.3em] mb-4 block">Reach Out</span>
+            <h2 className="text-3xl md:text-5xl font-black mb-10 uppercase tracking-tighter leading-tight">
+              SEND US A <span className="text-yellow-500">MESSAGE</span>
+            </h2>
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 px-1">Full Name</label>
+                  <input type="text" placeholder="John Doe" className="bg-gray-50 border-none p-5 rounded-2xl focus:ring-2 focus:ring-yellow-400 w-full transition-all text-sm shadow-inner" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 px-1">Email Address</label>
+                  <input type="email" placeholder="john@example.com" className="bg-gray-50 border-none p-5 rounded-2xl focus:ring-2 focus:ring-yellow-400 w-full transition-all text-sm shadow-inner" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 px-1">Subject</label>
+                <input type="text" placeholder="Booking Inquiry" className="bg-gray-50 border-none p-5 rounded-2xl focus:ring-2 focus:ring-yellow-400 w-full transition-all text-sm shadow-inner" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 px-1">Your Message</label>
+                <textarea placeholder="Tell us about your travel plans..." rows={5} className="bg-gray-50 border-none p-5 rounded-2xl focus:ring-2 focus:ring-yellow-400 w-full resize-none transition-all text-sm shadow-inner"></textarea>
+              </div>
+              <button className="bg-yellow-500 text-black font-black py-5 px-12 rounded-2xl hover:bg-yellow-600 transition-all active:scale-95 shadow-xl shadow-yellow-100 w-full sm:w-auto uppercase tracking-widest">
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <div className="space-y-12">
+            <div>
+              <h3 className="text-xl md:text-2xl font-black mb-8 uppercase tracking-tighter">OFFICE <span className="text-yellow-500">INFO</span></h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8">
+                <div className="flex gap-6 items-start group">
+                  <div className="shrink-0 w-14 h-14 bg-yellow-50 flex items-center justify-center rounded-2xl text-yellow-500 group-hover:bg-yellow-500 group-hover:text-white transition-all duration-300">
+                    <i className="fa-solid fa-location-dot text-xl"><FaLocationArrow /></i>
+                  </div>
+                  <div>
+                    <h5 className="font-black text-xs md:text-sm uppercase tracking-widest mb-1">Our Location</h5>
+                    <p className="text-gray-500 text-sm md:text-base leading-relaxed">Main Street, Polonnaruwa,<br />Sri Lanka</p>
+                  </div>
+                </div>
+                <div className="flex gap-6 items-start group">
+                  <div className="shrink-0 w-14 h-14 bg-yellow-50 flex items-center justify-center rounded-2xl text-yellow-500 group-hover:bg-yellow-500 group-hover:text-white transition-all duration-300">
+                    <i className="fa-solid fa-phone-volume text-xl"><FaPhoneVolume /></i>
+                  </div>
+                  <div>
+                    <h5 className="font-black text-xs md:text-sm uppercase tracking-widest mb-1">Phone Numbers</h5>
+                    <p className="text-gray-500 text-sm md:text-base">+94 76 125 52 23</p>
+                    <p className="text-gray-500 text-sm md:text-base">+94 27 222 12 34</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="rounded-[2.5rem] overflow-hidden h-80  contrast-125 border-4 border-gray-50 shadow-2xl">
+               <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15792.833989354065!2d81.00287019999999!3d7.93043285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afb446549c636f3%3A0xc3f1738734a74288!2sPolonnaruwa!5e0!3m2!1sen!2slk!4v1700000000000" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen={true} 
+                  loading="lazy"
+                  title="Google Map Location"
+                ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Contact;
