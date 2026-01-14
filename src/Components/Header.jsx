@@ -9,7 +9,7 @@ const Header = () => {
           <i className="fa-solid fa-phone">
             <FaPhone />
           </i>
-          <span>+94 76 25 45 296</span>
+          <span>+94 77 576 3009 | +94 75 356 3009</span>
         </div>
         <div className="flex items-center gap-2">
           <i className="fa-solid fa-phone">
@@ -21,17 +21,17 @@ const Header = () => {
           <i className="fa-solid fa-phone">
             <FaLocationArrow />
           </i>
-          <span>Polonnaruwa</span>
+          <span>No.445/1, 2nd Canal Road, Kaduruwela, Polonnaruwa</span>
         </div>
       </div>
       <div className="flex items-center gap-4 md:gap-6">
-        <div className="flex gap-2 sm:gap-4"> 
+        {/* <div className="flex gap-2 sm:gap-4"> 
           <button className="hover:underline">Login</button>
           <span>|</span>
           <button className="hover:underline">Register</button>
-        </div>
+        </div> */}
         <div className="flex gap-3 text-base">
-            <a href="#" className="hover:opacity-80"><i><FaWhatsapp /></i></a>
+            <a href="https://wa.me/94718928844?" className="hover:opacity-80"><i><FaWhatsapp /></i></a>
             <a href="#" className="hover:opacity-80"><i><FaFacebookF /></i></a>
         </div>
       </div>

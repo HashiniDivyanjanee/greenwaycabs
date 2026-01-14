@@ -1,120 +1,118 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../../firebase'; // ඔබේ firebase configuration එක නිවැරදිදැයි බලන්න
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
-const vehiclesData = [
-  {
-    id: 1,
-    name: "Toyota Yaris",
-    basePrice: 3200,
-    image:
-      "https://www.carbike360.com/_next/image?url=https%3A%2F%2Fd2uqhpl0gyo7mc.cloudfront.net%2Fsmall_Vezel_b9cbe13538.jpg&w=3840&q=75",
-    available: true,
-  },
-  {
-    id: 2,
-    name: "Suzuki Wagon R",
-    basePrice: 2800,
-    image:
-      "https://images.overdrive.in/wp-content/uploads/2013/11/VEZEL_HYBRID-red.jpg",
-    available: true,
-  },
-  {
-    id: 3,
-    name: "Honda Vezel",
-    basePrice: 5500,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzMWERktNUNWWxQXaDsbYWHTZ0xunckBqZVg&s",
-    available: false,
-  },
-  {
-    id: 4,
-    name: "Toyota Prius",
-    basePrice: 4500,
-    image:
-      "https://media.istockphoto.com/id/1150425295/photo/3d-illustration-of-generic-hatchback-car-perspective-view.jpg?s=612x612&w=0&k=20&c=vws8oDFjcfGpqNAybWPxsA9XROdcBh2MXW2PGEDgk-8=",
-    available: true,
-  },
-  {
-    id: 5,
-    name: "Nissan Leaf",
-    basePrice: 4000,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpR4dIuwglyw7ROwEFCGi7-FnlVPfmzYk8hA&s",
-    available: true,
-  },
-];
-const kmOptions = [1, 2, 3, 4, 5];
+/* -------------------- SLIDER CARD COMPONENT -------------------- */
 
 const SliderVehicleCard = ({ vehicle }) => {
-  const [selectedKm, setSelectedKm] = useState(1);
-  const currentPrice = vehicle.basePrice + (selectedKm - 1) * 200;
+  const navigate = useNavigate();
+  const [selectedKm, setSelectedKm] = useState('1 Km');
+  const kmOptions = ['1 Km', '2 Km', '3 Km', '4 Km', '5 Km'];
+
+  // පින්තූරය තෝරා ගැනීම (Array එකක් නම් පළමුවැන්න පෙන්වයි)
+  const displayImage = vehicle.images && vehicle.images.length > 0 
+    ? vehicle.images[0] 
+    : (vehicle.image || 'https://via.placeholder.com/400x300?text=No+Image');
+
+  // Firestore හි ඇති මිල ගණන් පෙන්වීම
+  const getDisplayPrice = () => {
+    if (vehicle.kmPrices && vehicle.kmPrices[selectedKm]) {
+      return Number(vehicle.kmPrices[selectedKm]).toLocaleString();
+    }
+    // මිලක් නැතිනම් 0 පෙන්වයි
+    return "0";
+  };
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col transition-all hover:shadow-xl group h-full">
       <div className="p-4 flex items-center justify-center h-48 md:h-56 overflow-hidden bg-gray-50/50">
         <img 
-          src={vehicle.image} 
+          src={displayImage} 
           alt={vehicle.name} 
           className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
         />
       </div>
 
       <div className="px-5 py-3 flex justify-between items-center">
-        <h3 className="text-xl font-bold text-gray-900">{vehicle.name}</h3>
-        <span className={`text-sm font-bold ${vehicle.available ? 'text-green-600' : 'text-red-500'}`}>
-          {vehicle.available ? 'Available' : 'Booked'}
+        <h3 className="text-xl font-bold text-gray-900 truncate pr-2 uppercase">{vehicle.name}</h3>
+        <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-md ${
+          vehicle.available !== false ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-500'
+        }`}>
+          {vehicle.available !== false ? 'Available' : 'Booked'}
         </span>
       </div>
 
       <hr className="mx-5 border-gray-100" />
 
-      <div className="px-5 py-4 flex flex-wrap gap-2 justify-between">
+      {/* KM Selection Buttons */}
+      <div className="px-5 py-4 flex flex-wrap gap-2 justify-center">
         {kmOptions.map((km) => (
           <button
             key={km}
             onClick={() => setSelectedKm(km)}
-            className={`flex items-center gap-2 px-3 py-3 rounded-xl transition-all border ${
+            className={`flex items-center gap-2 px-3 py-2 rounded-xl transition-all border ${
               selectedKm === km 
                 ? 'bg-yellow-100 border-yellow-300 text-yellow-700' 
-                : 'bg-orange-50 border-transparent text-gray-600 hover:bg-orange-100'
+                : 'bg-white border-gray-100 text-gray-400 hover:bg-orange-50'
             }`}
           >
-            <i className={`fa-solid fa-gauge-simple-high text-xs md:text-sm ${selectedKm === km ? 'text-yellow-600' : 'text-orange-400'}`}></i>
-            <span className="text-[10px] md:text-xs font-bold whitespace-nowrap">{km} Km</span>
+            <span className="text-[10px] font-black whitespace-nowrap">{km}</span>
           </button>
         ))}
       </div>
 
       <div className="px-5 pb-4 text-right mt-auto">
-        <p className="text-yellow-500 font-black text-xl md:text-2xl">
-          Rs.{currentPrice} Per Day
+        <p className="text-yellow-500 font-black text-xl">
+          Rs.{getDisplayPrice()} <span className="text-[10px] text-gray-400 uppercase">/ {selectedKm}</span>
         </p>
       </div>
 
-      <button className="w-full bg-[#1c1c1c] text-white font-bold py-5 text-lg hover:bg-black transition-all active:scale-95">
+      {/* Book Now Button - Detail Page එකට යාමට */}
+      <button 
+        onClick={() => navigate(`/vehicle/${vehicle.id}`, { state: { vehicle } })}
+        className="w-full bg-[#1c1c1c] text-white font-black py-5 text-sm uppercase tracking-widest hover:bg-black transition-all active:scale-95"
+      >
         Book Now
       </button>
     </div>
   );
 };
 
+/* -------------------- MAIN SLIDER COMPONENT -------------------- */
+
 const SliderVehicle = () => {
+  const [vehiclesData, setVehiclesData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
 
+  // Firebase වලින් දත්ත ලබා ගැනීම
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setVisibleCount(3);
-      } else if (window.innerWidth >= 640) {
-        setVisibleCount(2);
-      } else {
-        setVisibleCount(1);
+    const fetchVehicles = async () => {
+      try {
+        const q = query(collection(db, "vehicles"), orderBy("createdAt", "desc"));
+        const snap = await getDocs(q);
+        const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setVehiclesData(data);
+      } catch (err) {
+        console.error("Firebase fetch error:", err);
+      } finally {
+        setLoading(false);
       }
     };
+    fetchVehicles();
+  }, []);
 
+  // Responsive Screen Logic
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setVisibleCount(3);
+      else if (window.innerWidth >= 640) setVisibleCount(2);
+      else setVisibleCount(1);
+    };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -122,53 +120,45 @@ const SliderVehicle = () => {
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => {
-      const maxIndex = vehiclesData.length - visibleCount;
+      const maxIndex = Math.max(0, vehiclesData.length - visibleCount);
       return prev >= maxIndex ? 0 : prev + 1;
     });
-  }, [visibleCount]);
+  }, [vehiclesData.length, visibleCount]);
 
   const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => {
-      const maxIndex = vehiclesData.length - visibleCount;
+      const maxIndex = Math.max(0, vehiclesData.length - visibleCount);
       return prev <= 0 ? maxIndex : prev - 1;
     });
-  }, [visibleCount]);
+  }, [vehiclesData.length, visibleCount]);
 
-  // Auto-play logic
+  // Auto-play
   useEffect(() => {
-    if (isPaused) return;
-    
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 4000); // Slide every 4 seconds
-
+    if (isPaused || vehiclesData.length <= visibleCount) return;
+    const interval = setInterval(nextSlide, 4000);
     return () => clearInterval(interval);
-  }, [nextSlide, isPaused]);
+  }, [nextSlide, isPaused, vehiclesData.length, visibleCount]);
+
+  if (loading) return <div className="py-20 text-center text-yellow-500 font-bold uppercase tracking-widest">Loading Fleet...</div>;
 
   return (
     <section className="bg-white py-12 md:py-16 px-6 text-center overflow-hidden">
-      <div className="max-w-6xl mx-auto mb-10 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div className="max-w-6xl mx-auto mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div className="text-left">
           <h2 className="text-2xl md:text-4xl font-black uppercase">
             Enjoy Our <span className="text-yellow-500">Journey</span>
           </h2>
-          <p className="text-gray-500 max-w-xl mt-2 text-xs md:text-sm leading-relaxed">
-            Premium quality rides with the latest models and features to ensure your comfort and safety throughout the trip.
+          <p className="text-gray-500 max-w-xl mt-2 text-xs md:text-sm leading-relaxed font-medium">
+            Premium quality rides curated for your comfort and safety. Choose your perfect match from our latest fleet.
           </p>
         </div>
         
         <div className="flex gap-2">
-          <button 
-            onClick={prevSlide}
-            className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-yellow-500 hover:border-yellow-500 hover:text-white transition-all shadow-sm"
-          >
-            <i className="fa-solid fa-chevron-left"><FaChevronLeft/></i>
+          <button onClick={prevSlide} className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-yellow-500 hover:text-white transition-all shadow-sm">
+            <FaChevronLeft/>
           </button>
-          <button 
-            onClick={nextSlide}
-            className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-yellow-500 hover:border-yellow-500 hover:text-white transition-all shadow-sm"
-          >
-            <i className="fa-solid fa-chevron-right"><FaChevronRight/></i>
+          <button onClick={nextSlide} className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-yellow-500 hover:text-white transition-all shadow-sm">
+            <FaChevronRight/>
           </button>
         </div>
       </div>
@@ -194,7 +184,6 @@ const SliderVehicle = () => {
         </div>
       </div>
 
-      {/* Dot Indicators */}
       <div className="flex justify-center gap-2 mt-8">
         {Array.from({ length: Math.max(0, vehiclesData.length - visibleCount + 1) }).map((_, i) => (
           <button
@@ -203,7 +192,6 @@ const SliderVehicle = () => {
             className={`h-2 rounded-full transition-all duration-300 ${
               currentIndex === i ? 'w-8 bg-yellow-500' : 'w-2 bg-gray-200'
             }`}
-            aria-label={`Go to slide ${i + 1}`}
           />
         ))}
       </div>

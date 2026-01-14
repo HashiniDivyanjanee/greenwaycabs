@@ -1,7 +1,9 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const Booking = () => {
+const Booking = ({ onNavigate, onTaxiBookingClick }) => {
+  const navigate = useNavigate();
   return (
     <div className="bg-yellow-500 py-10 md:py-12 px-6 md:px-20">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -14,11 +16,27 @@ const Booking = () => {
           </h2>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-          <button className="bg-white text-black font-bold py-3 md:py-4 px-6  md:px-8 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors shadow-lg active:scale-95">
-            Taxi & Hire Me <i><FaArrowRight /></i>
+          <button
+            onClick={() =>
+              onTaxiBookingClick
+                ? onTaxiBookingClick()
+                : onNavigate && onNavigate("contact")
+            }
+            className="bg-white text-black font-bold py-3 md:py-4 px-6  md:px-8 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors shadow-lg active:scale-95"
+          >
+            Taxi & Hire Me{" "}
+            <i>
+              <FaArrowRight />
+            </i>
           </button>
-          <button className="bg-[#1a1a1a] text-white  font-bold py-3 md:py-4 px-6  md:px-8 rounded-xl flex items-center justify-center gap-2 hover:bg-black transition-colors shadow-lg active:scale-95">
-            Book Vehicle <i><FaArrowRight /></i>
+          <button
+            onClick={() => navigate("/vehicle")}
+            className="bg-[#1a1a1a] text-white  font-bold py-3 md:py-4 px-6  md:px-8 rounded-xl flex items-center justify-center gap-2 hover:bg-black transition-colors shadow-lg active:scale-95"
+          >
+            Book Vehicle
+            <i>
+              <FaArrowRight />
+            </i>
           </button>
         </div>
       </div>
