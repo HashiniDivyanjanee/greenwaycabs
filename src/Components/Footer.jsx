@@ -18,7 +18,7 @@ const Footer = () => {
               Safe, reliable, and luxury fleet at your service 24/7.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow-500 hover:text-black transition-all">
+              <a href="https://www.facebook.com/share/17x7yY9hgb/" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow-500 hover:text-black transition-all">
                 <FaFacebookF size={14} />
               </a>
              
@@ -40,18 +40,31 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
+        {/* Contact Info */}
           <div>
             <h3 className="text-lg font-bold mb-6 uppercase tracking-widest text-white">Contact Info</h3>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li className="flex items-center gap-3">
-                <FaPhoneAlt className="text-yellow-500" /> +94 77 576 3009 <br></br> +94 75 356 3009 <br></br> +94 27 43 66 104
+              {/* Phone Numbers with tel: links */}
+              <li className="flex items-start gap-3">
+                <FaPhoneAlt className="text-yellow-500 mt-1" /> 
+                <div className="flex flex-col gap-1">
+                  <a href="tel:+94775763009" className="hover:text-yellow-500 transition-colors">+94 77 576 3009</a>
+                  <a href="tel:+94753563009" className="hover:text-yellow-500 transition-colors">+94 75 356 3009</a>
+                  <a href="tel:+94274366104" className="hover:text-yellow-500 transition-colors">+94 27 43 66 104</a>
+                </div>
               </li>
+              
+              {/* Email with mailto: link */}
               <li className="flex items-center gap-3">
-                <FaEnvelope className="text-yellow-500" /> info@greenwaytravels.com
+                <FaEnvelope className="text-yellow-500" /> 
+                <a href="mailto:greenwaylanka2021@gmail.com" className="hover:text-yellow-500 transition-colors underline-offset-4">
+                  greenwaylanka2021@gmail.com
+                </a>
               </li>
-              <li className="flex items-center gap-3">
-                <FaMapMarkerAlt className="text-yellow-500" /> No.445/1, 2nd Canal Road, Kaduruwela, Polonnaruwa
+
+              <li className="flex items-start gap-3">
+                <FaMapMarkerAlt className="text-yellow-500 mt-1" /> 
+                <span>No.445/1, 2nd Canal Road, Kaduruwela, Polonnaruwa</span>
               </li>
             </ul>
           </div>

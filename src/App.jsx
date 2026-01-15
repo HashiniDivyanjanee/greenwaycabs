@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// react-router-dom අවශ්‍ය කොටස් import කරගන්න
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
@@ -20,16 +19,19 @@ import About from "./Page/About";
 import SliderVehicle from "./Components/SliderVehicle";
 import VehicleDetail from "./Page/VehicleDetail";
 import TaxiBookingPopup from "./Components/TaxiBookingPopup";
+import VehicleBookingPopup from "./Components/VehicleBookinPopup";
 import Admin from "./Page/Admin";
 
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [isTaxiPopupOpen, setIsTaxiPopupOpen] = useState(false);
+  const [isVehiclePopupOpen, setIsVehiclePopupOpen] = useState(false);
 
   const openTaxiPopup = () => setIsTaxiPopupOpen(true);
   const closeTaxiPopup = () => setIsTaxiPopupOpen(false);
+  const openVehiclePopup = () => setIsVehiclePopupOpen(true);
+  const closeVehiclePopup = () => setIsVehiclePopupOpen(false);
 
-  // Home Page එක සඳහා වෙනම Component එකක් ලෙස සකසා ගැනීම පිරිසිදුයි
   const HomePage = () => (
     <>
       <HeroSlider />
@@ -50,7 +52,6 @@ const App = () => {
   );
 
   return (
-    // මුළු App එකම Router එකකින් වට කිරීම අනිවාර්යයි
     <Router>
       <div className="flex flex-col min-h-screen">
         <Header />
@@ -58,7 +59,7 @@ const App = () => {
         
         <main className="flex-grow">
           <Routes>
-            {/* ප්‍රධාන පිටු සඳහා පාරවල් (Routes) සැකසීම */}
+        
             <Route path="/" element={<HomePage />} />
             <Route path="/home" element={<Navigate to="/" />} />
             <Route path="/about" element={<About />} />
@@ -66,7 +67,7 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
             
-            {/* වාහන ලැයිස්තු පිටුව */}
+        
             <Route path="/vehicle" element={
               <Vehicle 
                 selectedCategory={selectedCategory} 
@@ -74,16 +75,17 @@ const App = () => {
               />
             } />
 
-            {/* වාහන විස්තර පිටුව (Slider එකෙන් මෙතනට navigate කරයි) */}
-            <Route path="/vehicle/:id" element={<VehicleDetail />} />
+          
+            <Route path="/vehicle/:id" element={<VehicleDetail onVehicleBookingClick={openVehiclePopup}/>} />
             
-            {/* වැරදි URL එකක් ගැහුවොත් Home එකට යවන්න */}
+        
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
 
         <Footer />
         <TaxiBookingPopup isOpen={isTaxiPopupOpen} onClose={closeTaxiPopup} />
+        <VehicleBookingPopup isOpen={isVehiclePopupOpen} onClose={closeVehiclePopup} />
       </div>
     </Router>
   );

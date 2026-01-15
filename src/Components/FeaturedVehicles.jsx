@@ -1,7 +1,8 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { db } from '../../firebase';
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { useNavigate } from "react-router-dom"; // මෙය අලුතින් එක් කරන ලදී
+import { useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa"; // Search icon එක සඳහා
 
 /* -------------------- CARD COMPONENT -------------------- */
 const VehicleBookCard = ({ vehicle, onSelect }) => {
@@ -54,7 +55,7 @@ const VehicleBookCard = ({ vehicle, onSelect }) => {
       </div>
 
       <button 
-        onClick={() => onSelect(vehicle.id)} // ID එක පමණක් යවමු
+        onClick={() => onSelect(vehicle.id)}
         className="w-full bg-[#111] text-white font-black py-6 hover:bg-black transition-all uppercase tracking-widest"
       >
         Reserve This Ride
@@ -64,10 +65,11 @@ const VehicleBookCard = ({ vehicle, onSelect }) => {
 };
 
 /* -------------------- MAIN COMPONENT -------------------- */
-const FeaturedVehicles = ({ selectedCategory = 'ALL', viewMode = 'grid' }) => {
+const FeaturedVehicles = ({ selectedCategory = 'ALL' }) => {
   const [vehiclesData, setVehiclesData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // Navigation සඳහා
+  const [searchTerm, setSearchTerm] = useState(""); // Search term එක සඳහා state එකක්
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -80,20 +82,55 @@ const FeaturedVehicles = ({ selectedCategory = 'ALL', viewMode = 'grid' }) => {
   }, []);
 
   const handleSelectVehicle = (id) => {
-    navigate(`/vehicle/${id}`); // /vehicle/ID-HERE ලෙස navigate වේ
+    navigate(`/vehicle/${id}`);
   };
 
+  // Filter කිරීම: Category සහ Search Text යන දෙකම බලයි
   const filteredVehicles = useMemo(() => {
-    return vehiclesData.filter(v => selectedCategory === 'ALL' || v.category === selectedCategory);
-  }, [selectedCategory, vehiclesData]);
+    return vehiclesData.filter(v => {
+      const matchesCategory = selectedCategory === 'ALL' || v.category === selectedCategory;
+      const matchesSearch = v.name.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [selectedCategory, vehiclesData, searchTerm]);
 
-  if (loading) return <div className="py-20 text-center">Loading...</div>;
+  if (loading) return <div className="py-20 text-center font-bold text-gray-500">Loading Fleet...</div>;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-10">
-      {filteredVehicles.map((v) => (
-        <VehicleBookCard key={v.id} vehicle={v} onSelect={handleSelectVehicle} />
-      ))}
+    <div className="max-w-7xl mx-auto px-6 py-10">
+      
+      {/* Search Bar Section */}
+      <div className="mb-12 flex justify-center">
+        <div className="relative w-full max-w-md">
+          <input
+            type="text"
+            placeholder="Search your favorite vehicle..."
+            className="w-full pl-12 pr-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-4 focus:ring-yellow-100 focus:bg-white transition-all font-medium text-gray-700 shadow-sm"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <FaSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-300 text-lg" />
+        </div>
+      </div>
+
+      {/* Vehicles Grid */}
+      {filteredVehicles.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {filteredVehicles.map((v) => (
+            <VehicleBookCard key={v.id} vehicle={v} onSelect={handleSelectVehicle} />
+          ))}
+        </div>
+      ) : (
+        <div className="py-20 text-center">
+          <p className="text-gray-400 font-bold text-lg">No vehicles found matching "{searchTerm}"</p>
+          <button 
+            onClick={() => setSearchTerm("")}
+            className="mt-4 text-yellow-600 font-black uppercase text-xs hover:underline"
+          >
+            Clear Search
+          </button>
+        </div>
+      )}
     </div>
   );
 };

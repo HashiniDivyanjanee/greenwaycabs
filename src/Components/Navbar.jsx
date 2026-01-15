@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom"; // මෙය අලුතින් එක් කරන ලදී
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { label: "Home", path: "/" }, // value වෙනුවට path ලබා දුන්නා
+    { label: "Home", path: "/" },
     { label: "About Us", path: "/about" },
     { label: "Vehicle", path: "/vehicle" },
     { label: "Gallery", path: "/gallery" },
@@ -15,17 +15,16 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 bg-[#1c1c1c] shadow-md py-4 px-4 md:px-10 flex justify-between items-center">
-      {/* Logo එක දැන් Link එකක් ලෙස */}
       <Link
         to="/"
         className="flex items-center cursor-pointer"
         onClick={() => setIsOpen(false)}
       >
-        <span className="text-xl md:text-2xl font-bold text-yellow-500 tracking-tighter">
+        {/* <span className="text-xl md:text-2xl font-bold text-yellow-500 tracking-tighter">
           GREENWAY
-        </span>
+        </span> */}
+        <img src="src/assets/Logo.png" alt="" className="w-18 h-10" />
       </Link>
-
       {/* Desktop Menu */}
       <div className="hidden md:flex gap-8">
         {navItems.map((item) => (
@@ -50,7 +49,11 @@ const Navbar = () => {
         className="md:hidden text-2xl p-2"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <FaTimes className="text-white" /> : <FaBars className="text-white" />}
+        {isOpen ? (
+          <FaTimes className="text-white" />
+        ) : (
+          <FaBars className="text-white" />
+        )}
       </button>
 
       {/* Mobile Menu */}
@@ -60,7 +63,7 @@ const Navbar = () => {
             <NavLink
               key={item.path}
               to={item.path}
-              onClick={() => setIsOpen(false)} // ක්ලික් කළ පසු මෙනු එක වසන්න
+              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
                 `font-semibold text-left py-3 px-4 rounded-lg ${
                   isActive

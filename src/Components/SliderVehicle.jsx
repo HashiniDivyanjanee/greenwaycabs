@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../../firebase'; // ඔබේ firebase configuration එක නිවැරදිදැයි බලන්න
+import { db } from '../../firebase'; 
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
@@ -11,17 +11,15 @@ const SliderVehicleCard = ({ vehicle }) => {
   const [selectedKm, setSelectedKm] = useState('1 Km');
   const kmOptions = ['1 Km', '2 Km', '3 Km', '4 Km', '5 Km'];
 
-  // පින්තූරය තෝරා ගැනීම (Array එකක් නම් පළමුවැන්න පෙන්වයි)
   const displayImage = vehicle.images && vehicle.images.length > 0 
     ? vehicle.images[0] 
     : (vehicle.image || 'https://via.placeholder.com/400x300?text=No+Image');
 
-  // Firestore හි ඇති මිල ගණන් පෙන්වීම
   const getDisplayPrice = () => {
     if (vehicle.kmPrices && vehicle.kmPrices[selectedKm]) {
       return Number(vehicle.kmPrices[selectedKm]).toLocaleString();
     }
-    // මිලක් නැතිනම් 0 පෙන්වයි
+
     return "0";
   };
 
@@ -69,12 +67,12 @@ const SliderVehicleCard = ({ vehicle }) => {
         </p>
       </div>
 
-      {/* Book Now Button - Detail Page එකට යාමට */}
+
       <button 
         onClick={() => navigate(`/vehicle/${vehicle.id}`, { state: { vehicle } })}
         className="w-full bg-[#1c1c1c] text-white font-black py-5 text-sm uppercase tracking-widest hover:bg-black transition-all active:scale-95"
       >
-        Book Now
+        Reserve This Ride
       </button>
     </div>
   );
@@ -89,7 +87,7 @@ const SliderVehicle = () => {
   const [visibleCount, setVisibleCount] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Firebase වලින් දත්ත ලබා ගැනීම
+
   useEffect(() => {
     const fetchVehicles = async () => {
       try {
