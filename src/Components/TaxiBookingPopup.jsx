@@ -6,12 +6,45 @@ const TaxiBookingPopup = ({ isOpen, onClose }) => {
     phone: "",
     nic: "",
     pickup: "",
-    pickupDateTime: "",
     dropoff: "",
+    pickupDateTime: "",
     dropoffDateTime: "",
+    category: "",
+    vehicleModel: "",
+    kmPackage: "1 Km",
     days: "",
     ref: "",
   });
+
+  const vehicleData = {
+    Cars: [
+      "Honda Grace",
+      "Toyota Prius",
+      "Honda Fit",
+      "Suzuki Alto",
+      "Suzuki Wagon R",
+      "Suzuki Maruti",
+      "Micro Panda",
+    ],
+    Vans: [
+      "Toyota KDH",
+      "Nissan Clipper (Buddy Van)",
+      "Suzuki Every",
+      "Mazda Every",
+    ],
+    Bikes: ["Bajaj CT 100", "Honda ZR"],
+    "Heavy Vehicles": ["Bus", "Dimo Battaramulla"],
+    "Three Wheelers": ["Bajaj Three-wheeler"],
+  };
+
+  const handleCategoryChange = (e) => {
+    const selectedCat = e.target.value;
+    setFormData((prev) => ({
+      ...prev,
+      category: selectedCat,
+      vehicleModel: vehicleData[selectedCat] ? vehicleData[selectedCat][0] : "",
+    }));
+  };
 
   if (!isOpen) return null;
 
@@ -30,20 +63,25 @@ Customer Name: ${formData.name}
 Phone Number: ${formData.phone}
 NIC: ${formData.nic}
 Pick Up Location: ${formData.pickup}
-Pick Up Date/Time: ${formData.pickupDateTime}
 Drop Off Location: ${formData.dropoff}
-Drop Off Date/Time: ${formData.dropoffDateTime}
+Pick Up Date & Time: ${formData.pickupDateTime}
+Drop Off Date & Time: ${formData.dropoffDateTime}
+Time: ${formData.time}
+Date: ${formData.date}
 Duration: ${formData.days} Days
+KM Package: ${formData.kmPackage}
+Vehicle Category: ${formData.category}
+Vehicle Model: ${formData.vehicleModel}
 Ref. Number: ${formData.ref || "N/A"}
 --------------------------
 Note: I am sending the deposit slip via the next message.
 `;
- const encodedMessage = encodeURIComponent(message);
+    const encodedMessage = encodeURIComponent(message);
 
     const whatsappUrl = `https://wa.me/94769070920?text=${encodedMessage}`;
-  window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, "_blank");
 
-  onClose();
+    onClose();
   };
 
   return (
@@ -60,7 +98,7 @@ Note: I am sending the deposit slip via the next message.
         <div className="p-8 md:p-10 max-h-[90vh] overflow-y-auto custom-scrollbar">
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-black text-gray-900 uppercase tracking-tighter">
-              Taxi & <span className="text-yellow-500">Hire Me</span>
+              Taxi & <span className="text-yellow-500">Hire me</span>
             </h2>
             <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-2">
               Instant Booking Request
@@ -83,7 +121,7 @@ Note: I am sending the deposit slip via the next message.
                 placeholder="Enter your full name"
               />
             </div>
-
+           
             {/* Field Group: Phone & NIC */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
@@ -116,7 +154,6 @@ Note: I am sending the deposit slip via the next message.
               </div>
             </div>
 
-            {/* Field Group: Pick Up */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
@@ -129,12 +166,12 @@ Note: I am sending the deposit slip via the next message.
                   onChange={handleInputChange}
                   type="text"
                   className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
-                  placeholder="Pick-up location"
+                  placeholder="Address"
                 />
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
-                  Pick Up Date / Time
+                  Pick Up Date/Time
                 </label>
                 <input
                   required
@@ -143,11 +180,11 @@ Note: I am sending the deposit slip via the next message.
                   onChange={handleInputChange}
                   type="datetime-local"
                   className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
+                  placeholder="ID Card Number"
                 />
               </div>
             </div>
 
-            {/* Field Group: Drop Off */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
@@ -160,12 +197,12 @@ Note: I am sending the deposit slip via the next message.
                   onChange={handleInputChange}
                   type="text"
                   className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
-                  placeholder="Destination location"
+                  placeholder="Address"
                 />
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
-                  Drop Off Date / Time
+                  Drop Off Date/Time
                 </label>
                 <input
                   required
@@ -174,14 +211,76 @@ Note: I am sending the deposit slip via the next message.
                   onChange={handleInputChange}
                   type="datetime-local"
                   className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
+                  placeholder="ID Card Number"
                 />
               </div>
             </div>
 
-            {/* Field Group: Days & Ref */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
+                <label className="text-[10px] font-black uppercase text-yellow-500 px-1">
+                  Select Category
+                </label>
+                <select
+                  required
+                  name="category"
+                  value={formData.category}
+                  onChange={handleCategoryChange}
+                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 text-sm cursor-pointer"
+                >
+                  <option value="">Choose Category</option>
+                  {Object.keys(vehicleData).map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-black uppercase text-yellow-500 px-1">
+                  Select Model
+                </label>
+                <select
+                  required
+                  name="vehicleModel"
+                  value={formData.vehicleModel}
+                  onChange={handleInputChange}
+                  disabled={!formData.category}
+                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 text-sm cursor-pointer disabled:opacity-50"
+                >
+                  <option value="">Choose Model</option>
+                  {formData.category &&
+                    vehicleData[formData.category].map((model) => (
+                      <option key={model} value={model}>
+                        {model}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-black uppercase text-yellow-500 px-1">
+                  Select KM Package
+                </label>
+                <select
+                  name="kmPackage"
+                  value={formData.kmPackage}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 text-sm"
+                >
+                  <option value="1 Km">1 Km Package</option>
+                  <option value="2 Km">2 Km Package</option>
+                  <option value="3 Km">3 Km Package</option>
+                  <option value="4 Km">4 Km Package</option>
+                  <option value="5 Km">5 Km Package</option>
+                  <option value="Unlimited">Unlimited KM</option>
+                </select>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-black uppercase text-yellow-500 px-1">
                   How many Days
                 </label>
                 <input
@@ -190,10 +289,14 @@ Note: I am sending the deposit slip via the next message.
                   value={formData.days}
                   onChange={handleInputChange}
                   type="number"
-                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
+                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 text-sm"
                   placeholder="1"
                 />
               </div>
+            </div>
+
+            {/* Field Group: Days & Ref */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
                   Ref. Number
@@ -217,7 +320,39 @@ Note: I am sending the deposit slip via the next message.
                 upload the slip.
               </p>
             </div>
-
+            <div className="grid grid-cols-1 gap-3 max-w-sm mx-auto">
+              <div className="bg-white p-3 rounded-xl border border-yellow-100 shadow-sm">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-[10px] font-black text-yellow-600 uppercase">
+                    Bank Name
+                  </span>
+                  <span className="text-xs font-bold text-gray-800">
+                    Bank of Ceylon (BOC)
+                  </span>
+                </div>
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-[10px] font-black text-yellow-600 uppercase">
+                    Account Name
+                  </span>
+                  <span className="text-xs font-bold text-gray-800">
+                    Your Company Name
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] font-black text-yellow-600 uppercase">
+                    Account No
+                  </span>
+                  <span className="text-sm font-black text-black tracking-wider">
+                    1234567890
+                  </span>
+                </div>
+                <div className="mt-1 text-right">
+                  <span className="text-[9px] font-bold text-gray-400 uppercase italic">
+                    Branch: Colombo
+                  </span>
+                </div>
+              </div>
+            </div>
             {/* Action Buttons */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <label className="cursor-pointer bg-gray-200 hover:bg-gray-300 text-gray-700 font-black py-4 rounded-xl transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-[11px]">

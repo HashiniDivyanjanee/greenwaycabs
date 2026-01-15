@@ -65,6 +65,7 @@ Time: ${formData.time}
 Date: ${formData.date}
 Duration: ${formData.days} Days
 KM Package: ${formData.kmPackage}
+Vehicle Category: ${formData.category}
 Vehicle Model: ${formData.vehicleModel}
 Ref. Number: ${formData.ref || "N/A"}
 --------------------------

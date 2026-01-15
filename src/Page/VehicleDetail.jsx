@@ -9,6 +9,8 @@ const VehicleDetail = ({ onNavigate, onVehicleBookingClick }) => {
   const [vehicle, setVehicle] = useState(null);
   const [loading, setLoading] = useState(true);
 
+const [selectedImage, setSelectedImage] = useState(null);
+
   useEffect(() => {
     const fetchVehicle = async () => {
       try {
@@ -16,7 +18,9 @@ const VehicleDetail = ({ onNavigate, onVehicleBookingClick }) => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          setVehicle({ id: docSnap.id, ...docSnap.data() });
+          const data = docSnap.data();
+          setVehicle({ id: docSnap.id, ...data });
+          setSelectedImage(data.images?.[0] || data.image);
         } else {
           console.log("No such vehicle!");
         }
@@ -52,17 +56,21 @@ const VehicleDetail = ({ onNavigate, onVehicleBookingClick }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left: Images */}
         <div className="bg-white p-6 rounded-3xl border border-gray-100">
-          <img
-            src={vehicle.images?.[0] || vehicle.image}
+         <img
+            src={selectedImage}
             alt={vehicle.name}
-            className="w-full h-auto object-contain rounded-2xl"
+            className="w-full h-[400px] object-contain rounded-2xl transition-all duration-300"
           />
+
           <div className="grid grid-cols-4 gap-4 mt-6">
             {vehicle.images?.map((img, index) => (
-              <img
+           <img
                 key={index}
                 src={img}
-                className="h-20 w-full object-cover rounded-lg border border-gray-100"
+                onClick={() => setSelectedImage(img)}
+                className={`h-20 w-full object-cover rounded-lg border-2 cursor-pointer transition-all ${
+                  selectedImage === img ? "border-yellow-500" : "border-gray-100 hover:border-yellow-200"
+                }`}
                 alt="gallery"
               />
             ))}
@@ -80,20 +88,20 @@ const VehicleDetail = ({ onNavigate, onVehicleBookingClick }) => {
 
           <div className="flex gap-4 mb-8">
             <div className="bg-gray-100 px-4 py-2 rounded-lg font-bold text-xs uppercase">
-              4 Seats
+              {vehicle.seats} seats
             </div>
             <div className="bg-gray-100 px-4 py-2 rounded-lg font-bold text-xs uppercase">
-              Automatic
+              {vehicle.transmission}
             </div>
             <div className="bg-gray-100 px-4 py-2 rounded-lg font-bold text-xs uppercase">
-              Petrol
+              {vehicle.fuelType}
             </div>
           </div>
 
-          <p className="text-gray-600 leading-relaxed text-lg mb-8">
+          {/* <p className="text-gray-600 leading-relaxed text-lg mb-8">
             {vehicle.description ||
               "Experience luxury and comfort with our premium fleet. This vehicle is regularly maintained and comes with a professional driver for your safety."}
-          </p>
+          </p> */}
 
           <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100 mb-8">
             <h3 className="font-bold mb-4 uppercase text-xs tracking-widest text-gray-400">

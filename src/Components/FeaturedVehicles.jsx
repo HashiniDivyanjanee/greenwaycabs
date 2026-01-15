@@ -85,7 +85,6 @@ const FeaturedVehicles = ({ selectedCategory = 'ALL' }) => {
     navigate(`/vehicle/${id}`);
   };
 
-  // Filter කිරීම: Category සහ Search Text යන දෙකම බලයි
   const filteredVehicles = useMemo(() => {
     return vehiclesData.filter(v => {
       const matchesCategory = selectedCategory === 'ALL' || v.category === selectedCategory;
