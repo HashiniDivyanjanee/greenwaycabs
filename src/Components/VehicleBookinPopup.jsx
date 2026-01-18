@@ -37,14 +37,14 @@ const VehicleBookingPopup = ({ isOpen, onClose, selectedVehicle }) => {
     e.preventDefault();
 
     const message = `
-Taxi & Hire Me Request
+Rent Vehicle Booking
 --------------------------
 Customer Name: ${formData.name}
 Phone Number: ${formData.phone}
 NIC: ${formData.nic}
 Address: ${formData.pickup}
-Time: ${formData.time}
-Date: ${formData.date}
+Booking Date: ${formData.date}
+Booking Time: ${formData.time}
 Duration: ${formData.days} Days
 KM Package: ${formData.kmPackage}
 Vehicle Category: ${formData.category}
@@ -54,9 +54,7 @@ Ref. Number: ${formData.ref || "N/A"}
 Note: I am sending the deposit slip via the next message.
 `;
     const encodedMessage = encodeURIComponent(message);
-
-   
-    const whatsappUrl = `https://wa.me/94718928844?text=${encodedMessage}`;
+     const whatsappUrl = `https://wa.me/94718928844?text=${encodedMessage}`;
         window.open(whatsappUrl, "_blank");
     onClose();
   };

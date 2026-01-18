@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import {
-  FaTimes,FaCloud
-} from "react-icons/fa";
+import { FaTimes, FaCloud } from "react-icons/fa";
 
 const TaxiBookingPopup = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -10,8 +8,10 @@ const TaxiBookingPopup = ({ isOpen, onClose }) => {
     nic: "",
     pickup: "",
     dropoff: "",
-    pickupDateTime: "",
-    dropoffDateTime: "",
+    pickupdate: "",
+    dropoffdate: "",
+    pickuptime: "",
+    dropofftime: "",
     category: "",
     vehicleModel: "",
     kmPackage: "1 Km",
@@ -67,10 +67,10 @@ Phone Number: ${formData.phone}
 NIC: ${formData.nic}
 Pick Up Location: ${formData.pickup}
 Drop Off Location: ${formData.dropoff}
-Pick Up Date & Time: ${formData.pickupDateTime}
-Drop Off Date & Time: ${formData.dropoffDateTime}
-Time: ${formData.time}
-Date: ${formData.date}
+Pick Up Date: ${formData.pickupdate}
+Pick Up Time: ${formData.pickuptime}
+Drop Off Date: ${formData.dropoffdate}
+Drop Off Time: ${formData.dropofftime}
 Duration: ${formData.days} Days
 KM Package: ${formData.kmPackage}
 Vehicle Category: ${formData.category}
@@ -80,8 +80,7 @@ Ref. Number: ${formData.ref || "N/A"}
 Note: I am sending the deposit slip via the next message.
 `;
     const encodedMessage = encodeURIComponent(message);
-
-    const whatsappUrl = `https://wa.me/94718928844?text=${encodedMessage}`;
+     const whatsappUrl = `https://wa.me/94718928844?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
 
     onClose();
@@ -95,7 +94,9 @@ Note: I am sending the deposit slip via the next message.
           onClick={onClose}
           className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-yellow-500 hover:text-white rounded-full transition-all z-10"
         >
-          <i className="fa-solid fa-xmark"><FaTimes/></i>
+          <i className="fa-solid fa-xmark">
+            <FaTimes />
+          </i>
         </button>
 
         <div className="p-8 md:p-10 max-h-[90vh] overflow-y-auto custom-scrollbar">
@@ -124,7 +125,7 @@ Note: I am sending the deposit slip via the next message.
                 placeholder="Enter your full name"
               />
             </div>
-           
+
             {/* Field Group: Phone & NIC */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
@@ -157,64 +158,90 @@ Note: I am sending the deposit slip via the next message.
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
-                  Pick Up
-                </label>
-                <input
-                  required
-                  name="pickup"
-                  value={formData.pickup}
-                  onChange={handleInputChange}
-                  type="text"
-                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
-                  placeholder="Address"
-                />
-              </div>
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
-                  Pick Up Date/Time
-                </label>
-                <input
-                  required
-                  name="pickupDateTime"
-                  value={formData.pickupDateTime}
-                  onChange={handleInputChange}
-                  type="datetime-local"
-                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
-                  placeholder="ID Card Number"
-                />
-              </div>
+            <div className="space-y-1.5">
+              <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
+                Pick Up
+              </label>
+              <input
+                required
+                name="pickup"
+                value={formData.pickup}
+                onChange={handleInputChange}
+                type="text"
+                className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
+                placeholder="Address"
+              />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
-                  Drop Off
+                  Pick Up Date
                 </label>
                 <input
                   required
-                  name="dropoff"
-                  value={formData.dropoff}
+                  name="pickupdate"
+                  value={formData.pickupdate}
                   onChange={handleInputChange}
-                  type="text"
+                  type="date"
                   className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
-                  placeholder="Address"
                 />
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
-                  Drop Off Date/Time
+                  Pick Up Time
                 </label>
                 <input
                   required
-                  name="dropoffDateTime"
-                  value={formData.dropoffDateTime}
+                  name="pickuptime"
+                  value={formData.pickuptime}
                   onChange={handleInputChange}
-                  type="datetime-local"
+                  type="time"
                   className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
-                  placeholder="ID Card Number"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
+                Drop Off
+              </label>
+              <input
+                required
+                name="dropoff"
+                value={formData.dropoff}
+                onChange={handleInputChange}
+                type="text"
+                className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
+                placeholder="Address"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
+                  Drop Off Date
+                </label>
+                <input
+                  required
+                  name="dropoffdate"
+                  value={formData.dropoffdate}
+                  onChange={handleInputChange}
+                  type="date"
+                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
+                  Drop Off Time
+                </label>
+                <input
+                  required
+                  name="dropofftime"
+                  value={formData.dropofftime}
+                  onChange={handleInputChange}
+                  type="time"
+                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
                 />
               </div>
             </div>
@@ -265,7 +292,7 @@ Note: I am sending the deposit slip via the next message.
 
             {/* Field Group: Days & Ref */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-               <div className="space-y-1.5">
+              <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase text-yellow-500 px-1">
                   How many Days
                 </label>
@@ -337,7 +364,6 @@ Note: I am sending the deposit slip via the next message.
             </div>
             {/* Action Buttons */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-             
               <button
                 type="submit"
                 className="bg-[#111] text-white font-black py-4 rounded-xl hover:bg-black transition-all active:scale-95 shadow-lg shadow-gray-200 uppercase tracking-widest text-[12px]"
