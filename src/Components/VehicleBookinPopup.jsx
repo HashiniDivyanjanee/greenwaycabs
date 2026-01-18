@@ -5,6 +5,7 @@ const VehicleBookingPopup = ({ isOpen, onClose, selectedVehicle }) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    whatsapp: "",
     nic: "",
     pickup: "",
     category: "",
@@ -13,8 +14,19 @@ const VehicleBookingPopup = ({ isOpen, onClose, selectedVehicle }) => {
     time: "",
     kmPackage: "1 Km",
     days: "1",
+    hasCar: "no",
     ref: "",
   });
+
+  const formatTimeAMPM = (time) => {
+    if (!time) return "N/A";
+    let [hours, minutes] = time.split(":");
+    hours = parseInt(hours);
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    return `${hours}:${minutes} ${ampm}`;
+  };
 
   useEffect(() => {
     if (selectedVehicle && isOpen) {
@@ -36,26 +48,30 @@ const VehicleBookingPopup = ({ isOpen, onClose, selectedVehicle }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const bookingTime = formatTimeAMPM(formData.time);
+
     const message = `
 Rent Vehicle Booking
 --------------------------
 Customer Name: ${formData.name}
 Phone Number: ${formData.phone}
+Whatsapp Number: ${formData.whatsapp}
 NIC: ${formData.nic}
 Address: ${formData.pickup}
 Booking Date: ${formData.date}
-Booking Time: ${formData.time}
+Booking Time: ${bookingTime}
 Duration: ${formData.days} Days
 KM Package: ${formData.kmPackage}
 Vehicle Category: ${formData.category}
 Vehicle Model: ${formData.vehicleModel}
+Do you have a car?: ${formData.hasCar === "yes" ? "Yes" : "No"}
 Ref. Number: ${formData.ref || "N/A"}
 --------------------------
 Note: I am sending the deposit slip via the next message.
 `;
     const encodedMessage = encodeURIComponent(message);
      const whatsappUrl = `https://wa.me/94718928844?text=${encodedMessage}`;
-        window.open(whatsappUrl, "_blank");
+    window.open(whatsappUrl, "_blank");
     onClose();
   };
 
@@ -159,6 +175,21 @@ Note: I am sending the deposit slip via the next message.
               </div>
             </div>
 
+            <div className="space-y-1.5">
+              <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
+                Whatsapp Number
+              </label>
+              <input
+                required
+                name="whatsapp"
+                value={formData.whatsapp}
+                onChange={handleInputChange}
+                type="text"
+                className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
+                placeholder="07X XXX XXXX"
+              />
+            </div>
+
             {/* Field Group: Pick Up */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
@@ -228,8 +259,21 @@ Note: I am sending the deposit slip via the next message.
               </div>
             </div>
 
-            {/* Field Group: Days & Ref */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
+                  Do you have a Vehicle?
+                </label>
+                <select
+                  name="hasCar"
+                  value={formData.hasCar}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 text-sm cursor-pointer shadow-inner"
+                >
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+                </select>
+              </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
                   Ref. Number (Bank Trassaction ID)
@@ -288,7 +332,6 @@ Note: I am sending the deposit slip via the next message.
             </div>
             {/* Action Buttons */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-           
               <button
                 type="submit"
                 className="bg-[#111] text-white font-black py-4 rounded-xl hover:bg-black transition-all active:scale-95 shadow-lg shadow-gray-200 uppercase tracking-widest text-[12px]"

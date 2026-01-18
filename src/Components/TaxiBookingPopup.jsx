@@ -5,6 +5,7 @@ const TaxiBookingPopup = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    whatsapp: "",
     nic: "",
     pickup: "",
     dropoff: "",
@@ -18,6 +19,16 @@ const TaxiBookingPopup = ({ isOpen, onClose }) => {
     days: "",
     ref: "",
   });
+
+  const formatTimeAMPM = (time) => {
+    if (!time) return "N/A";
+    let [hours, minutes] = time.split(":");
+    hours = parseInt(hours);
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    return `${hours}:${minutes} ${ampm}`;
+  };
 
   const vehicleData = {
     Cars: [
@@ -59,18 +70,22 @@ const TaxiBookingPopup = ({ isOpen, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const formattedPickupTime = formatTimeAMPM(formData.pickuptime);
+    const formattedDropoffTime = formatTimeAMPM(formData.dropofftime);
+
     const message = `
 Taxi & Hire Me Request
 --------------------------
 Customer Name: ${formData.name}
 Phone Number: ${formData.phone}
+Whatsapp Number: ${formData.whatsapp}
 NIC: ${formData.nic}
 Pick Up Location: ${formData.pickup}
 Drop Off Location: ${formData.dropoff}
 Pick Up Date: ${formData.pickupdate}
-Pick Up Time: ${formData.pickuptime}
+Pick Up Time: ${formattedPickupTime}
 Drop Off Date: ${formData.dropoffdate}
-Drop Off Time: ${formData.dropofftime}
+Drop Off Time: ${formattedDropoffTime}
 Duration: ${formData.days} Days
 KM Package: ${formData.kmPackage}
 Vehicle Category: ${formData.category}
@@ -80,6 +95,7 @@ Ref. Number: ${formData.ref || "N/A"}
 Note: I am sending the deposit slip via the next message.
 `;
     const encodedMessage = encodeURIComponent(message);
+
      const whatsappUrl = `https://wa.me/94718928844?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
 
@@ -144,18 +160,33 @@ Note: I am sending the deposit slip via the next message.
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
-                  NIC
+                  Whatsapp Number
                 </label>
                 <input
                   required
-                  name="nic"
-                  value={formData.nic}
+                  name="whatsapp"
+                  value={formData.whatsapp}
                   onChange={handleInputChange}
-                  type="text"
+                  type="tel"
                   className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
-                  placeholder="ID Card Number"
+                  placeholder="07X XXX XXXX"
                 />
               </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
+                NIC
+              </label>
+              <input
+                required
+                name="nic"
+                value={formData.nic}
+                onChange={handleInputChange}
+                type="text"
+                className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 shadow-inner text-sm"
+                placeholder="ID Card Number"
+              />
             </div>
 
             <div className="space-y-1.5">
