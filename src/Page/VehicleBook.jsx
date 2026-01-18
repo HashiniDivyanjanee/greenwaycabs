@@ -9,7 +9,7 @@ const Vehicles = ({ selectedCategory, onSelectCategory, onSelectVehicle }) => {
       <PageBanner 
         title="EXPLORE OUR FLEET" 
         subtitle="Our Vehicles" 
-        bgImage="https://images.unsplash.com/photo-1485291571170-ef410762b085?auto=format&fit=crop&w=1200&q=80"
+       bgImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
       />
 
       {/* Category Selection section */}

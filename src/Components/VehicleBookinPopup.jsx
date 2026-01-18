@@ -1,48 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { FaTimes, FaCloud } from "react-icons/fa";
 
-const VehicleBookingPopup = ({ isOpen, onClose }) => {
+const VehicleBookingPopup = ({ isOpen, onClose, selectedVehicle }) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     nic: "",
+    pickup: "",
     category: "",
     vehicleModel: "",
     date: "",
     time: "",
     kmPackage: "1 Km",
-    days: "",
+    days: "1",
     ref: "",
   });
 
-  const vehicleData = {
-    Cars: [
-      "Honda Grace",
-      "Toyota Prius",
-      "Honda Fit",
-      "Suzuki Alto",
-      "Suzuki Wagon R",
-      "Suzuki Maruti",
-      "Micro Panda",
-    ],
-    Vans: [
-      "Toyota KDH",
-      "Nissan Clipper (Buddy Van)",
-      "Suzuki Every",
-      "Mazda Every",
-    ],
-    Bikes: ["Bajaj CT 100", "Honda ZR"],
-    "Heavy Vehicles": ["Bus", "Dimo Battaramulla"],
-    "Three Wheelers": ["Bajaj Three-wheeler"],
-  };
-
-  const handleCategoryChange = (e) => {
-    const selectedCat = e.target.value;
-    setFormData((prev) => ({
-      ...prev,
-      category: selectedCat,
-      vehicleModel: vehicleData[selectedCat] ? vehicleData[selectedCat][0] : "",
-    }));
-  };
+  useEffect(() => {
+    if (selectedVehicle && isOpen) {
+      setFormData((prev) => ({
+        ...prev,
+        category: selectedVehicle.category || "General",
+        vehicleModel: selectedVehicle.name || "N/A",
+      }));
+    }
+  }, [selectedVehicle, isOpen]);
 
   if (!isOpen) return null;
 
@@ -60,7 +42,7 @@ Taxi & Hire Me Request
 Customer Name: ${formData.name}
 Phone Number: ${formData.phone}
 NIC: ${formData.nic}
-Pick Up Location: ${formData.pickup}
+Address: ${formData.pickup}
 Time: ${formData.time}
 Date: ${formData.date}
 Duration: ${formData.days} Days
@@ -75,7 +57,8 @@ Note: I am sending the deposit slip via the next message.
 
     const whatsappUrl = `https://wa.me/94769070920?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
-
+    // const whatsappUrl = `https://wa.me/94718928844?text=${encodedMessage}`;
+    //     window.open(whatsappUrl, "_blank");
     onClose();
   };
 
@@ -87,7 +70,9 @@ Note: I am sending the deposit slip via the next message.
           onClick={onClose}
           className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-yellow-500 hover:text-white rounded-full transition-all z-10"
         >
-          <i className="fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark">
+            <FaTimes />
+          </i>
         </button>
 
         <div className="p-8 md:p-10 max-h-[90vh] overflow-y-auto custom-scrollbar">
@@ -101,6 +86,21 @@ Note: I am sending the deposit slip via the next message.
           </div>
 
           <form className="space-y-5" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-2 gap-4 bg-yellow-50 p-4 rounded-2xl">
+              <div>
+                <label className="text-[10px] font-black uppercase text-yellow-600">
+                  Vehicle
+                </label>
+                <div className="font-bold text-sm">{formData.vehicleModel}</div>
+              </div>
+              <div>
+                <label className="text-[10px] font-black uppercase text-yellow-600">
+                  Category
+                </label>
+                <div className="font-bold text-sm">{formData.category}</div>
+              </div>
+            </div>
+
             {/* Field: Customer Name */}
             <div className="space-y-1.5">
               <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
@@ -195,50 +195,6 @@ Note: I am sending the deposit slip via the next message.
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase text-yellow-500 px-1">
-                  Select Category
-                </label>
-                <select
-                  required
-                  name="category"
-                  value={formData.category}
-                  onChange={handleCategoryChange}
-                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 text-sm cursor-pointer"
-                >
-                  <option value="">Choose Category</option>
-                  {Object.keys(vehicleData).map((cat) => (
-                    <option key={cat} value={cat}>
-                      {cat}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-yellow-500 px-1">
-                  Select Model
-                </label>
-                <select
-                  required
-                  name="vehicleModel"
-                  value={formData.vehicleModel}
-                  onChange={handleInputChange}
-                  disabled={!formData.category}
-                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 text-sm cursor-pointer disabled:opacity-50"
-                >
-                  <option value="">Choose Model</option>
-                  {formData.category &&
-                    vehicleData[formData.category].map((model) => (
-                      <option key={model} value={model}>
-                        {model}
-                      </option>
-                    ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-yellow-500 px-1">
                   Select KM Package
                 </label>
                 <select
@@ -248,10 +204,14 @@ Note: I am sending the deposit slip via the next message.
                   className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 text-sm"
                 >
                   <option value="1 Km">1 Km Package</option>
-                  <option value="2 Km">2 Km Package</option>
-                  <option value="3 Km">3 Km Package</option>
-                  <option value="4 Km">4 Km Package</option>
-                  <option value="5 Km">5 Km Package</option>
+                  <option value="100 Km">100 Km Package</option>
+                  <option value="200 Km">200 Km Package</option>
+                  <option value="250 Km">250 Km Package</option>
+                  <option value="300 Km">300 Km Package</option>
+                  <option value="350 Km">350 Km Package</option>
+                  <option value="400 Km">400 Km Package</option>
+                  <option value="500 Km">500 Km Package</option>
+
                   <option value="Unlimited">Unlimited KM</option>
                 </select>
               </div>
@@ -275,7 +235,7 @@ Note: I am sending the deposit slip via the next message.
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
-                  Ref. Number
+                  Ref. Number (Bank Trassaction ID)
                 </label>
                 <input
                   name="ref"
@@ -293,7 +253,7 @@ Note: I am sending the deposit slip via the next message.
               <p className="text-[11px] font-bold text-gray-400 leading-relaxed text-center px-4">
                 To book a vehicle you need to deposit{" "}
                 <span className="text-gray-900 font-black">Rs.3000</span>. Then
-                upload the slip.
+                upload the slip this number 071 892 88 44.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-3 max-w-sm mx-auto">
@@ -311,7 +271,7 @@ Note: I am sending the deposit slip via the next message.
                     Account Name
                   </span>
                   <span className="text-xs font-bold text-gray-800">
-                    Your Company Name
+                    Greenway Travels & Cab Service
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
@@ -319,23 +279,19 @@ Note: I am sending the deposit slip via the next message.
                     Account No
                   </span>
                   <span className="text-sm font-black text-black tracking-wider">
-                    1234567890
+                    92841338
                   </span>
                 </div>
                 <div className="mt-1 text-right">
                   <span className="text-[9px] font-bold text-gray-400 uppercase italic">
-                    Branch: Colombo
+                    Branch: Kaduruwela
                   </span>
                 </div>
               </div>
             </div>
             {/* Action Buttons */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <label className="cursor-pointer bg-gray-200 hover:bg-gray-300 text-gray-700 font-black py-4 rounded-xl transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-[11px]">
-                <i className="fa-solid fa-cloud-arrow-up text-lg"></i>
-                Upload Image
-                <input type="file" className="hidden" accept="image/*" />
-              </label>
+           
               <button
                 type="submit"
                 className="bg-[#111] text-white font-black py-4 rounded-xl hover:bg-black transition-all active:scale-95 shadow-lg shadow-gray-200 uppercase tracking-widest text-[12px]"

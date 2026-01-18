@@ -9,7 +9,7 @@ const VehicleDetail = ({ onNavigate, onVehicleBookingClick }) => {
   const [vehicle, setVehicle] = useState(null);
   const [loading, setLoading] = useState(true);
 
-const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const fetchVehicle = async () => {
@@ -56,7 +56,7 @@ const [selectedImage, setSelectedImage] = useState(null);
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left: Images */}
         <div className="bg-white p-6 rounded-3xl border border-gray-100">
-         <img
+          <img
             src={selectedImage}
             alt={vehicle.name}
             className="w-full h-[400px] object-contain rounded-2xl transition-all duration-300"
@@ -64,12 +64,14 @@ const [selectedImage, setSelectedImage] = useState(null);
 
           <div className="grid grid-cols-4 gap-4 mt-6">
             {vehicle.images?.map((img, index) => (
-           <img
+              <img
                 key={index}
                 src={img}
                 onClick={() => setSelectedImage(img)}
                 className={`h-20 w-full object-cover rounded-lg border-2 cursor-pointer transition-all ${
-                  selectedImage === img ? "border-yellow-500" : "border-gray-100 hover:border-yellow-200"
+                  selectedImage === img
+                    ? "border-yellow-500"
+                    : "border-gray-100 hover:border-yellow-200"
                 }`}
                 alt="gallery"
               />
@@ -86,7 +88,7 @@ const [selectedImage, setSelectedImage] = useState(null);
             {vehicle.name}
           </h1>
 
-          <div className="flex gap-4 mb-8">
+          {/* <div className="flex gap-4 mb-8">
             <div className="bg-gray-100 px-4 py-2 rounded-lg font-bold text-xs uppercase">
               {vehicle.seats} seats
             </div>
@@ -96,7 +98,7 @@ const [selectedImage, setSelectedImage] = useState(null);
             <div className="bg-gray-100 px-4 py-2 rounded-lg font-bold text-xs uppercase">
               {vehicle.fuelType}
             </div>
-          </div>
+          </div> */}
 
           {/* <p className="text-gray-600 leading-relaxed text-lg mb-8">
             {vehicle.description ||
@@ -108,28 +110,28 @@ const [selectedImage, setSelectedImage] = useState(null);
               Pricing per distance
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {Object.entries(vehicle.kmPrices || {}).map(([km, price]) => (
-                <div
-                  key={km}
-                  className="bg-white p-4 rounded-xl shadow-sm border border-gray-100"
-                >
-                  <div className="text-[10px] font-bold text-gray-400 uppercase">
-                    {km}
+              {Object.entries(vehicle.kmPrices || {})
+                .filter(([_, price]) => Number(price) > 0)
+                .map(([km, price]) => (
+                  <div
+                    key={km}
+                    className="bg-white p-4 rounded-xl shadow-sm border border-gray-100"
+                  >
+                    <div className="text-[10px] font-bold text-gray-400 uppercase">
+                      {km}
+                    </div>
+                    <div className="text-xl font-black text-gray-900">
+                      Rs.{Number(price).toLocaleString()}
+                    </div>
                   </div>
-                  <div className="text-xl font-black text-gray-900">
-                    Rs.{Number(price).toLocaleString()}
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
 
           <button
             onClick={() => {
               if (onVehicleBookingClick) {
-                onVehicleBookingClick();
-              } else if (onNavigate) {
-                onNavigate("contact");
+                onVehicleBookingClick(vehicle);
               }
             }}
             className="w-full bg-yellow-500 text-black font-black py-6 rounded-2xl text-lg hover:bg-yellow-600 transition-all shadow-xl shadow-yellow-100 uppercase tracking-widest"

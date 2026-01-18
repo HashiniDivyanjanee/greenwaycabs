@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import {
+  FaTimes,FaCloud
+} from "react-icons/fa";
 
 const TaxiBookingPopup = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -78,7 +81,7 @@ Note: I am sending the deposit slip via the next message.
 `;
     const encodedMessage = encodeURIComponent(message);
 
-    const whatsappUrl = `https://wa.me/94769070920?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/94718928844?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
 
     onClose();
@@ -92,7 +95,7 @@ Note: I am sending the deposit slip via the next message.
           onClick={onClose}
           className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-yellow-500 hover:text-white rounded-full transition-all z-10"
         >
-          <i className="fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark"><FaTimes/></i>
         </button>
 
         <div className="p-8 md:p-10 max-h-[90vh] overflow-y-auto custom-scrollbar">
@@ -260,26 +263,9 @@ Note: I am sending the deposit slip via the next message.
               </div>
             </div>
 
+            {/* Field Group: Days & Ref */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-black uppercase text-yellow-500 px-1">
-                  Select KM Package
-                </label>
-                <select
-                  name="kmPackage"
-                  value={formData.kmPackage}
-                  onChange={handleInputChange}
-                  className="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-yellow-400 text-sm"
-                >
-                  <option value="1 Km">1 Km Package</option>
-                  <option value="2 Km">2 Km Package</option>
-                  <option value="3 Km">3 Km Package</option>
-                  <option value="4 Km">4 Km Package</option>
-                  <option value="5 Km">5 Km Package</option>
-                  <option value="Unlimited">Unlimited KM</option>
-                </select>
-              </div>
-              <div className="space-y-1.5">
+               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase text-yellow-500 px-1">
                   How many Days
                 </label>
@@ -293,13 +279,9 @@ Note: I am sending the deposit slip via the next message.
                   placeholder="1"
                 />
               </div>
-            </div>
-
-            {/* Field Group: Days & Ref */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-[0.15em] text-yellow-500 px-1">
-                  Ref. Number
+                  Ref. Number (Bank Trassaction ID)
                 </label>
                 <input
                   name="ref"
@@ -317,7 +299,7 @@ Note: I am sending the deposit slip via the next message.
               <p className="text-[11px] font-bold text-gray-400 leading-relaxed text-center px-4">
                 To book a vehicle you need to deposit{" "}
                 <span className="text-gray-900 font-black">Rs.3000</span>. Then
-                upload the slip.
+                upload the slip this number 071 892 88 44.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-3 max-w-sm mx-auto">
@@ -335,7 +317,7 @@ Note: I am sending the deposit slip via the next message.
                     Account Name
                   </span>
                   <span className="text-xs font-bold text-gray-800">
-                    Your Company Name
+                    Greenway Travels & Cab Service
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
@@ -343,23 +325,19 @@ Note: I am sending the deposit slip via the next message.
                     Account No
                   </span>
                   <span className="text-sm font-black text-black tracking-wider">
-                    1234567890
+                    92841338
                   </span>
                 </div>
                 <div className="mt-1 text-right">
                   <span className="text-[9px] font-bold text-gray-400 uppercase italic">
-                    Branch: Colombo
+                    Branch: Kaduruwela
                   </span>
                 </div>
               </div>
             </div>
             {/* Action Buttons */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <label className="cursor-pointer bg-gray-200 hover:bg-gray-300 text-gray-700 font-black py-4 rounded-xl transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-[11px]">
-                <i className="fa-solid fa-cloud-arrow-up text-lg"></i>
-                Upload Image
-                <input type="file" className="hidden" accept="image/*" />
-              </label>
+             
               <button
                 type="submit"
                 className="bg-[#111] text-white font-black py-4 rounded-xl hover:bg-black transition-all active:scale-95 shadow-lg shadow-gray-200 uppercase tracking-widest text-[12px]"

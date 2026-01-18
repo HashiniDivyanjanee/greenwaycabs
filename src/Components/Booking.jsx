@@ -24,19 +24,13 @@ const Booking = ({ onNavigate, onTaxiBookingClick }) => {
             }
             className="bg-white text-black font-bold py-3 md:py-4 px-6  md:px-8 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors shadow-lg active:scale-95"
           >
-            Taxi & Hire Me{" "}
-            <i>
-              <FaArrowRight />
-            </i>
+            Book a Taxi Here
           </button>
           <button
             onClick={() => navigate("/vehicle")}
             className="bg-[#1a1a1a] text-white  font-bold py-3 md:py-4 px-6  md:px-8 rounded-xl flex items-center justify-center gap-2 hover:bg-black transition-colors shadow-lg active:scale-95"
           >
-            Book Vehicle
-            <i>
-              <FaArrowRight />
-            </i>
+            Book a Rental Car Here
           </button>
         </div>
       </div>

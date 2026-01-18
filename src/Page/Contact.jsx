@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import PageBanner from "../Components/PageBanner";
 import { FaPhoneVolume, FaLocationArrow } from "react-icons/fa";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleWhatsApp = (e) => {
+    e.preventDefault();
+
+    const phoneNumber = "94753563009";
+
+    const message = `*Contact Form Inquiry*%0A
+    *Name:* ${formData.fullName}%0A
+    *Email:* ${formData.email}%0A
+    *Subject:* ${formData.subject}%0A
+    *Message:* ${formData.message}`;
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+    window.open(whatsappUrl, "_blank");
+  };
+
   return (
     <div className="bg-white">
       <PageBanner
@@ -20,7 +47,7 @@ const Contact = () => {
             <h2 className="text-3xl md:text-5xl font-black mb-10 uppercase tracking-tighter leading-tight">
               SEND US A <span className="text-yellow-500">MESSAGE</span>
             </h2>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleWhatsApp}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 px-1">
@@ -28,6 +55,10 @@ const Contact = () => {
                   </label>
                   <input
                     type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
                     placeholder="John Doe"
                     className="bg-gray-50 border-none p-5 rounded-2xl focus:ring-2 focus:ring-yellow-400 w-full transition-all text-sm shadow-inner"
                   />
@@ -38,6 +69,10 @@ const Contact = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                     placeholder="john@example.com"
                     className="bg-gray-50 border-none p-5 rounded-2xl focus:ring-2 focus:ring-yellow-400 w-full transition-all text-sm shadow-inner"
                   />
@@ -49,6 +84,10 @@ const Contact = () => {
                 </label>
                 <input
                   type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
                   placeholder="Booking Inquiry"
                   className="bg-gray-50 border-none p-5 rounded-2xl focus:ring-2 focus:ring-yellow-400 w-full transition-all text-sm shadow-inner"
                 />
@@ -58,12 +97,16 @@ const Contact = () => {
                   Your Message
                 </label>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   placeholder="Tell us about your travel plans..."
                   rows={5}
                   className="bg-gray-50 border-none p-5 rounded-2xl focus:ring-2 focus:ring-yellow-400 w-full resize-none transition-all text-sm shadow-inner"
                 ></textarea>
               </div>
-              <button className="bg-yellow-500 text-black font-black py-5 px-12 rounded-2xl hover:bg-yellow-600 transition-all active:scale-95 shadow-xl shadow-yellow-100 w-full sm:w-auto uppercase tracking-widest">
+              <button type="submit" className="bg-yellow-500 text-black font-black py-5 px-12 rounded-2xl hover:bg-yellow-600 transition-all active:scale-95 shadow-xl shadow-yellow-100 w-full sm:w-auto uppercase tracking-widest">
                 Send Message
               </button>
             </form>
@@ -86,7 +129,7 @@ const Contact = () => {
                       Our Location
                     </h5>
                     <p className="text-gray-500 text-sm md:text-base leading-relaxed">
-                      No.445/1, 2nd Canal Road,
+                      2nd Canal Road,
                       <br />
                       Kaduruwela, Polonnaruwa
                     </p>
@@ -109,7 +152,10 @@ const Contact = () => {
                       +94 75 356 3009
                     </p>
                     <p className="text-gray-500 text-sm md:text-base">
-                      +94 27 43 66 104
+                      +94 71 892 8844
+                    </p>
+                    <p className="text-gray-500 text-sm md:text-base">
+                      +94 27 436 6104
                     </p>
                   </div>
                 </div>

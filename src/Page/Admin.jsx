@@ -25,15 +25,15 @@ const Admin = () => {
   const [vehicles, setVehicles] = useState([]);
 
   const categories = ["CAR", "VAN", "BIKE", "LORRY", "BUS", "CAB", "THREE WHEEL", "WEDDING CARS"];
-  const fuelTypes = ["Petrol", "Diesel", "Hybrid", "Electric"];
-  const transmissions = ["Auto", "Manual"];
+  // const fuelTypes = ["Petrol", "Diesel", "Hybrid", "Electric"];
+  // const transmissions = ["Auto", "Manual"];
 
   const [newVehicle, setNewVehicle] = useState({
     name: "",
     category: "CAR",
-    seats: "",
-    fuelType: "",
-    transmission: "",
+    // seats: "",
+    // fuelType: "",
+    // transmission: "",
     images: [null, null, null, null],
     kmPrices: { "1 Km": "", "2 Km": "", "3 Km": "", "4 Km": "", "5 Km": "" },
     available: true,
@@ -125,11 +125,11 @@ const Admin = () => {
     setNewVehicle({
       name: "",
       category: "CAR",
-      seats: "",
-      fuelType: "",
-      transmission: "",
+      // seats: "",
+      // fuelType: "",
+      // transmission: "",
       images: [null, null, null, null],
-      kmPrices: { "1 Km": "", "2 Km": "", "3 Km": "", "4 Km": "", "5 Km": "" },
+      kmPrices: { "1 Km": "","100 Km": "", "200 Km": "","250 Km": "", "300 Km": "","350 Km": "", "400 Km": "", "500 Km": "","Unlimited Km": "", },
       available: true,
     });
     setEditingId(null);
@@ -145,16 +145,20 @@ const Admin = () => {
     setNewVehicle({
       name: v.name,
       category: v.category || "CAR",
-      seats: v.seats || "",
-      fuelType: v.fuelType || "",
-      transmission: v.transmission || "",
+      // seats: v.seats || "",
+      // fuelType: v.fuelType || "",
+      // transmission: v.transmission || "",
       images: v.images || [null, null, null, null],
       kmPrices: v.kmPrices || {
         "1 Km": "",
-        "2 Km": "",
-        "3 Km": "",
-        "4 Km": "",
-        "5 Km": "",
+        "100 Km": "",
+        "200 Km": "",
+        "250 Km": "",
+        "300 Km": "",
+        "350 Km": "",
+        "400 Km": "",
+        "500 Km": "",
+        "Unlimited Km": "",
       },
       available: v.available ?? true,
     });
@@ -264,7 +268,7 @@ const Admin = () => {
                 {/* NEW FIELDS: SEATS, FUEL, TRANSMISSION */}
                 <div className="grid grid-cols-1 gap-4 py-2 border-y border-gray-100">
                   <div className="grid grid-cols-2 gap-2">
-                    <input
+                    {/* <input
                       type="number"
                       placeholder="Seats (e.g. 4)"
                       className="p-3 bg-gray-50 rounded-xl text-sm outline-none focus:ring-1 focus:ring-yellow-400"
@@ -272,8 +276,8 @@ const Admin = () => {
                       onChange={(e) =>
                         setNewVehicle({ ...newVehicle, seats: e.target.value })
                       }
-                    />
-                    <select
+                    /> */}
+                    {/* <select
                       className="p-3 bg-gray-50 rounded-xl text-sm outline-none focus:ring-1 focus:ring-yellow-400"
                       value={newVehicle.transmission}
                       onChange={(e) =>
@@ -289,9 +293,9 @@ const Admin = () => {
                           {t}
                         </option>
                       ))}
-                    </select>
+                    </select> */}
                   </div>
-                  <select
+                  {/* <select
                     className="w-full p-3 bg-gray-50 rounded-xl text-sm outline-none focus:ring-1 focus:ring-yellow-400"
                     value={newVehicle.fuelType}
                     onChange={(e) =>
@@ -304,7 +308,7 @@ const Admin = () => {
                         {f}
                       </option>
                     ))}
-                  </select>
+                  </select> */}
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">

@@ -1,20 +1,31 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
-  FaGripHorizontal, FaCar, FaBus, FaMotorcycle,
-  FaShuttleVan, FaTruck, FaCarSide, FaSpaceShuttle, FaCarAlt
+  FaGripHorizontal,
+  FaCar,
+  FaBus,
+  FaMotorcycle,
+  FaShuttleVan,
+  FaTruck,
+  FaCarSide,
+  FaSpaceShuttle,
+  FaCarAlt,
 } from "react-icons/fa";
 
 const cats = [
-  { icon: FaGripHorizontal, label: 'ALL' },
-  { icon: FaCar, label: 'CAR' },
-  { icon: FaBus, label: 'BUS' },
-  { icon: FaMotorcycle, label: 'BIKE' },
-  { icon: FaShuttleVan, label: 'VAN' },
-  { icon: FaTruck, label: 'LORRY' },
-  { icon: FaCarSide, label: 'CAB' },
-  { icon: FaSpaceShuttle, label: 'THREE WHEEL' },
-  { icon: FaCarAlt, label: 'WEDDING CAR' },
+  { icon: FaGripHorizontal, label: "ALL" },
+  { icon: FaCar, label: "CAR" },
+  { icon: FaBus, label: "BUS" },
+  { icon: FaMotorcycle, label: "BIKE" },
+  { icon: FaShuttleVan, label: "VAN" },
+  { icon: FaTruck, label: "LORRY" },
+  { icon: FaCarSide, label: "CAB" },
+  {
+    image: "/public/icon/tuktuk.png",
+    label: "THREE WHEEL",
+  },
+
+  { icon: FaCarAlt, label: "WEDDING CAR" },
 ];
 
 const Categories = ({ selectedCategory, onSelectCategory }) => {
@@ -24,8 +35,8 @@ const Categories = ({ selectedCategory, onSelectCategory }) => {
   const handleCategoryClick = (label) => {
     onSelectCategory(label);
 
-    if (location.pathname === '/') {
-      navigate('/vehicle');
+    if (location.pathname === "/") {
+      navigate("/vehicle");
     }
   };
 
@@ -45,23 +56,40 @@ const Categories = ({ selectedCategory, onSelectCategory }) => {
             return (
               <div
                 key={idx}
-                onClick={() => handleCategoryClick(cat.label)} 
+                onClick={() => handleCategoryClick(cat.label)}
                 className={`rounded-2xl p-4 md:p-5 flex flex-col items-center justify-center group cursor-pointer transition-all duration-300 shadow-sm border ${
                   selectedCategory === cat.label
-                    ? 'bg-yellow-500 border-yellow-600 ring-4 ring-yellow-100 scale-105 z-10'
-                    : 'bg-gray-50 border-gray-100 hover:bg-white hover:border-yellow-200 hover:shadow-md'
+                    ? "bg-yellow-500 border-yellow-600 ring-4 ring-yellow-100 scale-105 z-10"
+                    : "bg-gray-50 border-gray-100 hover:bg-white hover:border-yellow-200 hover:shadow-md"
                 }`}
               >
                 <div className="h-10 md:h-12 flex items-center justify-center mb-3">
-                  <Icon
-                    className={`text-2xl md:text-3xl transition-transform duration-300 group-hover:scale-110 ${
-                      selectedCategory === cat.label ? 'text-white' : 'text-gray-600'
-                    }`}
-                  />
+                  {cat.icon ? (
+                    <cat.icon
+                      className={`text-2xl md:text-3xl transition-transform duration-300 group-hover:scale-110 ${
+                        selectedCategory === cat.label
+                          ? "text-white"
+                          : "text-gray-600"
+                      }`}
+                    />
+                  ) : (
+                    <img
+                      src={cat.image}
+                      alt={cat.label}
+                      className={`h-8 md:h-10 object-contain transition-transform duration-300 group-hover:scale-110 ${
+                        selectedCategory === cat.label
+                          ? "brightness-0 invert"
+                          : ""
+                      }`}
+                    />
+                  )}
                 </div>
+
                 <p
                   className={`text-[9px] md:text-[10px] font-black py-1.5 px-3 rounded-full transition-all uppercase tracking-wider text-center w-full truncate ${
-                    selectedCategory === cat.label ? 'bg-white text-black' : 'bg-[#111] text-white'
+                    selectedCategory === cat.label
+                      ? "bg-white text-black"
+                      : "bg-[#111] text-white"
                   }`}
                 >
                   {cat.label}

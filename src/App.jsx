@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import "./App.css";
 import Header from "./Components/Header";
@@ -26,10 +31,15 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [isTaxiPopupOpen, setIsTaxiPopupOpen] = useState(false);
   const [isVehiclePopupOpen, setIsVehiclePopupOpen] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const openTaxiPopup = () => setIsTaxiPopupOpen(true);
   const closeTaxiPopup = () => setIsTaxiPopupOpen(false);
-  const openVehiclePopup = () => setIsVehiclePopupOpen(true);
+  const openVehiclePopup = (vehicle) => {
+    setSelectedVehicle(vehicle);
+    setIsBookingOpen(true);
+  };
   const closeVehiclePopup = () => setIsVehiclePopupOpen(false);
 
   const HomePage = () => (
@@ -56,36 +66,44 @@ const App = () => {
       <div className="flex flex-col min-h-screen">
         <Header />
         <NavBar />
-        
+
         <main className="flex-grow">
           <Routes>
-        
             <Route path="/" element={<HomePage />} />
             <Route path="/home" element={<Navigate to="/" />} />
             <Route path="/about" element={<About />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
-            
-        
-            <Route path="/vehicle" element={
-              <Vehicle 
-                selectedCategory={selectedCategory} 
-                onSelectCategory={setSelectedCategory} 
-              />
-            } />
 
-          
-            <Route path="/vehicle/:id" element={<VehicleDetail onVehicleBookingClick={openVehiclePopup}/>} />
-            
-        
+            <Route
+              path="/vehicle"
+              element={
+                <Vehicle
+                  selectedCategory={selectedCategory}
+                  onSelectCategory={setSelectedCategory}
+                />
+              }
+            />
+
+            <Route
+              path="/vehicle/:id"
+              element={
+                <VehicleDetail onVehicleBookingClick={openVehiclePopup} />
+              }
+            />
+
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
 
         <Footer />
         <TaxiBookingPopup isOpen={isTaxiPopupOpen} onClose={closeTaxiPopup} />
-        <VehicleBookingPopup isOpen={isVehiclePopupOpen} onClose={closeVehiclePopup} />
+        <VehicleBookingPopup
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+          selectedVehicle={selectedVehicle}
+        />
       </div>
     </Router>
   );
