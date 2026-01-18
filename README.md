@@ -1,25 +1,31 @@
 # 🚖 Greenway Travels & Cab Service
 
-Greenway Travels & Cab Service යනු පොලොන්නරුව ප්‍රදේශය කේන්ද්‍ර කරගත් ප්‍රීමියම් වාහන කුලියට දීමේ සහ ටැක්සි සේවාවකි. මෙම වෙබ් යෙදුම (Web App) මගින් පාරිභෝගිකයන්ට ඉතා පහසුවෙන් තමන්ට අවශ්‍ය වාහනයක් තෝරාගෙන වට්සැප් (WhatsApp) හරහා ක්ෂණිකව වෙන් කරවා ගත හැකිය.
+Greenway Travels & Cab Service is a premium vehicle rental and taxi service based in the Polonnaruwa area.
+This web application allows customers to easily select their preferred vehicle and make instant bookings via WhatsApp with just a few clicks.
 
 ![Project Banner](https://via.placeholder.com/1000x400?text=Greenway+Travels+And+Cab+Service+Banner)
 *(ඔබේ වෙබ් අඩවියේ Screenshot එකක් මෙතැනට ඇඩ් කරන්න)*
 
-## 🚀 විශේෂාංග (Features)
+## 🚀 Features
 
-- **විවිධ වාහන මාදිලි:** කාර්, වෑන්, බස්, ට්‍රීවීල් සහ මංගල රථ ඇතුළු විශාල එකතුවක්.
-- **ක්ෂණික වට්සැප් වෙන්කිරීම:** පෝරමයක් පිරවීමෙන් පසු සියලුම විස්තර ස්වයංක්‍රීයව WhatsApp පණිවිඩයක් ලෙස යැවීමේ හැකියාව.
-- **PWA පහසුකම (Installable App):** වෙබ් අඩවිය ජංගම දුරකථනයට ඇප් එකක් ලෙස ඉන්ස්ටෝල් කර ගැනීමේ හැකියාව.
-- **පැකේජ අනුව මිල ගණන්:** කිලෝමීටර් ප්‍රමාණය අනුව වෙනස් වන පාරදෘශ්‍ය මිල ගණන් පද්ධතිය.
-- **Responsive Design:** ඕනෑම ජංගම දුරකථනයකට හෝ පරිගණකයකට ගැළපෙන ආකර්ෂණීය පෙනුම.
+- Wide Range of Vehicles
+A large collection including cars, vans, buses, three-wheelers, and wedding vehicles.
+- Instant WhatsApp Booking
+After filling out a simple form, all booking details are automatically sent as a WhatsApp message, making reservations quick and hassle-free.
+- PWA Support (Installable App)
+The website can be installed on mobile devices as an app-like experience for easy access.
+- Package-Based Pricing
+Transparent pricing system based on kilometer packages, allowing customers to choose what suits them best.
+- Responsive Design
+An attractive and user-friendly interface that works perfectly on mobile phones, tablets, and desktops.
 
-## 🛠️ තාක්ෂණික මෙවලම් (Tech Stack)
+## 🛠️ Tech Stack
 
 - **Frontend:** React.js, Tailwind CSS
 - **Backend/Database:** Firebase Firestore
 - **State Management:** React Hooks (useState, useEffect)
 - **Icons:** React Icons, FontAwesome
-- **Deployment:** Vercel / Firebase Hosting
+- **Deployment:** Firebase Hosting
 
 ## 📸 Screenshots
 
@@ -27,10 +33,3 @@ Greenway Travels & Cab Service යනු පොලොන්නරුව ප්�
 | :---: | :---: | :---: |
 | ![Home](https://via.placeholder.com/300x600?text=Home+Page) | ![Detail](https://via.placeholder.com/300x600?text=Vehicle+Detail) | ![Booking](https://via.placeholder.com/300x600?text=Booking+Form) |
 
-## ⚙️ ස්ථාපනය කරන ආකාරය (Installation)
-
-ප්‍රොජෙක්ට් එක ඔබේ පරිගණකයේ ක්‍රියාත්මක කිරීමට පහත පියවර අනුගමනය කරන්න:
-
-1. පපලුව (Repository) Clone කරන්න:
-   ```bash
-   git clone [https://github.com/your-username/greenway-cab-service.git](https://github.com/your-username/greenway-cab-service.git)
