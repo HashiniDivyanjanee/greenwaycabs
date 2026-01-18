@@ -1,16 +1,36 @@
-# React + Vite
+# 🚖 Greenway Travels & Cab Service
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Greenway Travels & Cab Service යනු පොලොන්නරුව ප්‍රදේශය කේන්ද්‍ර කරගත් ප්‍රීමියම් වාහන කුලියට දීමේ සහ ටැක්සි සේවාවකි. මෙම වෙබ් යෙදුම (Web App) මගින් පාරිභෝගිකයන්ට ඉතා පහසුවෙන් තමන්ට අවශ්‍ය වාහනයක් තෝරාගෙන වට්සැප් (WhatsApp) හරහා ක්ෂණිකව වෙන් කරවා ගත හැකිය.
 
-Currently, two official plugins are available:
+![Project Banner](https://via.placeholder.com/1000x400?text=Greenway+Travels+And+Cab+Service+Banner)
+*(ඔබේ වෙබ් අඩවියේ Screenshot එකක් මෙතැනට ඇඩ් කරන්න)*
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 විශේෂාංග (Features)
 
-## React Compiler
+- **විවිධ වාහන මාදිලි:** කාර්, වෑන්, බස්, ට්‍රීවීල් සහ මංගල රථ ඇතුළු විශාල එකතුවක්.
+- **ක්ෂණික වට්සැප් වෙන්කිරීම:** පෝරමයක් පිරවීමෙන් පසු සියලුම විස්තර ස්වයංක්‍රීයව WhatsApp පණිවිඩයක් ලෙස යැවීමේ හැකියාව.
+- **PWA පහසුකම (Installable App):** වෙබ් අඩවිය ජංගම දුරකථනයට ඇප් එකක් ලෙස ඉන්ස්ටෝල් කර ගැනීමේ හැකියාව.
+- **පැකේජ අනුව මිල ගණන්:** කිලෝමීටර් ප්‍රමාණය අනුව වෙනස් වන පාරදෘශ්‍ය මිල ගණන් පද්ධතිය.
+- **Responsive Design:** ඕනෑම ජංගම දුරකථනයකට හෝ පරිගණකයකට ගැළපෙන ආකර්ෂණීය පෙනුම.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ තාක්ෂණික මෙවලම් (Tech Stack)
 
-## Expanding the ESLint configuration
+- **Frontend:** React.js, Tailwind CSS
+- **Backend/Database:** Firebase Firestore
+- **State Management:** React Hooks (useState, useEffect)
+- **Icons:** React Icons, FontAwesome
+- **Deployment:** Vercel / Firebase Hosting
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📸 Screenshots
+
+| Home Page | Vehicle Detail | Booking Form |
+| :---: | :---: | :---: |
+| ![Home](https://via.placeholder.com/300x600?text=Home+Page) | ![Detail](https://via.placeholder.com/300x600?text=Vehicle+Detail) | ![Booking](https://via.placeholder.com/300x600?text=Booking+Form) |
+
+## ⚙️ ස්ථාපනය කරන ආකාරය (Installation)
+
+ප්‍රොජෙක්ට් එක ඔබේ පරිගණකයේ ක්‍රියාත්මක කිරීමට පහත පියවර අනුගමනය කරන්න:
+
+1. පපලුව (Repository) Clone කරන්න:
+   ```bash
+   git clone [https://github.com/your-username/greenway-cab-service.git](https://github.com/your-username/greenway-cab-service.git)
