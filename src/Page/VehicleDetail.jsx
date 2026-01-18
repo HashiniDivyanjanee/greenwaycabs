@@ -112,6 +112,11 @@ const VehicleDetail = ({ onNavigate, onVehicleBookingClick }) => {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {Object.entries(vehicle.kmPrices || {})
                 .filter(([_, price]) => Number(price) > 0)
+                .sort(([a], [b]) => {
+                  const numA = parseInt(a.replace(/\D/g, "")) || 0;
+                  const numB = parseInt(b.replace(/\D/g, "")) || 0;
+                  return numA - numB;
+                })
                 .map(([km, price]) => (
                   <div
                     key={km}

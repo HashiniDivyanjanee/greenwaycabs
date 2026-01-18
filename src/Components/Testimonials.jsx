@@ -3,34 +3,52 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 const reviews = [
   { 
-    name: 'Amila Perera', 
-    role: 'Tourist', 
-    img: 'https://i.pravatar.cc/150?u=1',
-    text: "Excellent service and well-maintained vehicles. The booking process was seamless and the driver was very professional. Highly recommended for anyone visiting Sri Lanka."
+    name: 'Lakshitha S Kumarasiri', 
+    role: 'Solo Traveller', 
+    img: '/icon/assets/customer/2.jpeg',
+    text: "Excellent service and well-maintained vehicles. The booking process was seamless and the driver was very professional. Highly recommended."
   },
   { 
-    name: 'Saman Kumara', 
+    name: 'W. W. Indika Waduge', 
     role: 'Business Traveller', 
-    img: 'https://i.pravatar.cc/150?u=2',
+    img: '/icon/assets/customer/1.jpeg',
     text: "I use Greenway for all my business trips in Polonnaruwa. They are always on time, and the cars are spotless. Their customer support is top-notch."
   },
   { 
-    name: 'Nimali Silva', 
+    name: 'M. fazal', 
     role: 'Local Resident', 
-    img: 'https://i.pravatar.cc/150?u=3',
+    img: '/icon/assets/customer/3.jpeg',
     text: "The best cab service in the area. Very affordable prices and reliable drivers. I feel safe traveling with them even late at night."
   },
   { 
-    name: 'John Doe', 
+    name: 'Romesh Kanchana', 
     role: 'Expat', 
-    img: 'https://i.pravatar.cc/150?u=4',
+    img: '/icon/assets/customer/5.jpeg',
     text: "Amazing experience! We booked a van for a family trip and it was extremely comfortable. The driver knew all the best scenic routes."
   },
   { 
-    name: 'Priya Raj', 
+    name: 'Dhammika Dammi', 
     role: 'Solo Traveller', 
-    img: 'https://i.pravatar.cc/150?u=5',
+    img: '/icon/assets/customer/6.jpeg',
     text: "As a solo female traveller, safety is my priority. Greenway exceeded my expectations. Professional, polite, and very punctual."
+  },
+  { 
+    name: 'Chandan Chathuranga', 
+    role: 'Expat', 
+    img: '/icon/assets/customer/4.jpeg',
+    text: "Easy booking process and friendly driver. Will definitely book again."
+  },
+  { 
+    name: 'Gayan Jayasinghe', 
+    role: 'Solo Traveller', 
+    img: '/icon/assets/customer/8.jpeg',
+    text: "I booked a van for a family trip. The driver was polite, the vehicle was comfortable, and the journey was smooth. Excellent service from start to finish."
+  },
+  { 
+    name: 'R. P. P. Thiwanka D. Rajanayake', 
+    role: 'Business Traveller', 
+    img: '/icon/assets/customer/7.jpeg',
+    text: "Reliable partner for our company travel needs. Vehicles are well maintained and drivers are experienced."
   },
 ];
 

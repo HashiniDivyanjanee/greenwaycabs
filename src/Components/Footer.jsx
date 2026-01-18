@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
-  FaInstagram,
   FaWhatsapp,
   FaPhoneAlt,
   FaEnvelope,
@@ -19,7 +18,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-6">
             <h2 className="text-2xl font-black text-yellow-500 tracking-tighter">
-              GREENWAY
+              GREENWAY TRAVELS & RENT A CAR
             </h2>
             <p className="text-gray-400 text-sm leading-relaxed">
               Your trusted partner for premium travel experiences in Sri Lanka.
@@ -170,7 +169,7 @@ const Footer = () => {
           <p className="text-xs font-medium text-gray-500 tracking-wide">
             © {currentYear}{" "}
             <span className="text-gray-300">
-              Greenway Travel & Cab Service.
+              Greenway Travels & Rent a Car.
             </span>{" "}
             All Rights Reserved.
           </p>

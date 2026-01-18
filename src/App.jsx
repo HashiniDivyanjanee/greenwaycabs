@@ -25,6 +25,7 @@ import SliderVehicle from "./Components/SliderVehicle";
 import VehicleDetail from "./Page/VehicleDetail";
 import TaxiBookingPopup from "./Components/TaxiBookingPopup";
 import VehicleBookingPopup from "./Components/VehicleBookinPopup";
+import AppInstall from "./Components/AppInstall";
 import Admin from "./Page/Admin";
 
 const App = () => {
@@ -55,6 +56,7 @@ const App = () => {
       <RentalProcess />
       <Stats />
       <Testimonials />
+      <AppInstall/>
       <div className="mt-10">
         <Booking onTaxiBookingClick={openTaxiPopup} />
       </div>

@@ -38,12 +38,11 @@ const About = () => {
           <div className="relative order-1 lg:order-2">
             <div className="relative z-10 overflow-hidden rounded-[2.5rem] shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=80" 
+                src="/icon/assets/hero/hero2.avif" 
                 alt="Greenway Fleet" 
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* Decorative elements */}
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-yellow-500 rounded-3xl -z-10 animate-pulse"></div>
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-gray-100 rounded-3xl -z-10"></div>
           </div>

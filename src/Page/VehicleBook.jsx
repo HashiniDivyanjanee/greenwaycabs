@@ -2,6 +2,7 @@ import React from 'react';
 import Categories from '../Components/Categories';
 import FeaturedVehicles from '../Components/FeaturedVehicles';
 import PageBanner from '../Components/PageBanner';
+import AppInstall from "../Components/AppInstall";
 
 const Vehicles = ({ selectedCategory, onSelectCategory, onSelectVehicle }) => {
   return (
@@ -9,7 +10,7 @@ const Vehicles = ({ selectedCategory, onSelectCategory, onSelectVehicle }) => {
       <PageBanner 
         title="EXPLORE OUR FLEET" 
         subtitle="Our Vehicles" 
-       bgImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+       bgImage="/icon/assets/hero/hero3.avif"
       />
 
       {/* Category Selection section */}
@@ -24,6 +25,8 @@ const Vehicles = ({ selectedCategory, onSelectCategory, onSelectVehicle }) => {
         viewMode="grid" 
         onSelectVehicle={onSelectVehicle}
       />
+
+      <AppInstall />
     </div>
   );
 };

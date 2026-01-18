@@ -11,7 +11,6 @@ const Header = () => {
   return (
     <div className="bg-yellow-500 text-black py-2 px-4 md:px-10 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm font-medium gap-2">
       <div className="flex flex-wrap justify-center gap-3 md:gap-8">
-        {/* Phone Numbers - Click to Call */}
         <div className="flex items-center gap-2">
           <FaPhone className="text-[10px] md:text-xs" />
           <div className="flex gap-1">

@@ -16,17 +16,17 @@ const VehicleBookCard = ({ vehicle, onSelect }) => {
   const isBike = category === "bike";
 
   const kmOptions = isBike
-    ? ["Unlimited"]
+    ? ["Unlimited Km"]
     : isBusOrVan
     ? ["1 Km"]
-    : ["100 Km", "200 Km", "250 Km", "300 Km", "350 Km", "400 Km", "550 Km"];
+    : ["100 Km", "200 Km", "250 Km", "300 Km", "350 Km", "400 Km", "500 Km"];
 
   const [selectedKm, setSelectedKm] = useState(
-    isBike ? "Unlimited" : isBusOrVan ? "1 Km" : "100 Km"
+    isBike ? "Unlimited Km" : isBusOrVan ? "1 Km" : "100 Km"
   );
 
   useEffect(() => {
-    setSelectedKm(isBike ? "Unlimited" : isBusOrVan ? "1 Km" : "100 Km");
+    setSelectedKm(isBike ? "Unlimited Km" : isBusOrVan ? "1 Km" : "100 Km");
   }, [category, isBusOrVan, isBike]);
 
   const getDisplayPrice = () => {

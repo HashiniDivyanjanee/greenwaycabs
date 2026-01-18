@@ -4,7 +4,6 @@ import React from 'react';
 const PageBanner = ({ title, subtitle, bgImage }) => {
   return (
     <div className="relative h-[250px] md:h-[350px] w-full flex items-center justify-center overflow-hidden">
-      {/* Background with parallax-like effect */}
       <div 
         className="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] hover:scale-110" 
         style={{ 

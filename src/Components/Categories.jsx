@@ -1,31 +1,23 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import {
-  FaGripHorizontal,
-  FaCar,
-  FaBus,
-  FaMotorcycle,
-  FaShuttleVan,
-  FaTruck,
-  FaCarSide,
-  FaSpaceShuttle,
-  FaCarAlt,
-} from "react-icons/fa";
 
 const cats = [
-  { icon: FaGripHorizontal, label: "ALL" },
-  { icon: FaCar, label: "CAR" },
-  { icon: FaBus, label: "BUS" },
-  { icon: FaMotorcycle, label: "BIKE" },
-  { icon: FaShuttleVan, label: "VAN" },
-  { icon: FaTruck, label: "LORRY" },
-  { icon: FaCarSide, label: "CAB" },
+  { image: "/icon/category/all.png", label: "ALL" },
+  { image: "/icon/category/car.png", label: "CAR" },
+  { image: "/icon/category/bus.png", label: "BUS" },
+  { image: "/icon/category/motorcycle.png", label: "BIKE" },
+  { image: "/icon/category/van.png", label: "VAN" },
+  { image: "/icon/category/lorry.png", label: "LORRY" },
+  { image: "/icon/category/jeep.png", label: "CAB" },
   {
-    image: "/public/icon/tuktuk.png",
+    image: "/icon/category/tuktuk.png",
     label: "THREE WHEEL",
   },
+ {
+    image: "/icon/category/wedding-car.png",
+    label: "WEDDING CAR",
+  },
 
-  { icon: FaCarAlt, label: "WEDDING CAR" },
 ];
 
 const Categories = ({ selectedCategory, onSelectCategory }) => {

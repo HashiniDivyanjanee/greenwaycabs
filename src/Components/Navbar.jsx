@@ -23,7 +23,7 @@ const Navbar = () => {
         {/* <span className="text-xl md:text-2xl font-bold text-yellow-500 tracking-tighter">
           GREENWAY
         </span> */}
-        <img src="src/assets/Logo.png" alt="" className="w-18 h-10" />
+        <img src="/icon/Logo.png" alt="" className="w-18 h-10" />
       </Link>
       {/* Desktop Menu */}
       <div className="hidden md:flex gap-8">

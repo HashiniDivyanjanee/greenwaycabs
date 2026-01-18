@@ -1,12 +1,12 @@
 import React from 'react';
-import { FaCar, FaMeteor, FaMedal, FaSearchLocation } from "react-icons/fa";
+import { FaCar, FaMeteor, FaMedal, FaHandsHelping,  } from "react-icons/fa";
 
 const Stats = () => {
   const stats = [
     { icon: FaCar, count: '500+', label: 'Vehicle Fleet' },
     { icon: FaMeteor, count: '10K+', label: 'Miles Driven' },
     { icon: FaMedal, count: '1500+', label: 'Happy Clients' },
-    { icon: FaSearchLocation, count: '24/7', label: 'Support' },
+    { icon: FaHandsHelping, count: '24/7', label: 'Support' },
   ];
 
   return (
@@ -17,7 +17,6 @@ const Stats = () => {
           return (
             <div key={idx} className="flex flex-col items-center">
               <div className="h-14 md:h-20 w-14 md:w-20 flex items-center justify-center mb-2 md:mb-4">
-                {/* ✅ Icon */}
                 <Icon className="text-3xl md:text-5xl text-yellow-500" />
               </div>
 

@@ -3,17 +3,20 @@ import AboutUs from "../Components/AboutUs";
 import Testimonials from "../Components/Testimonials";
 import Stats from "../Components/Status";
 import PageBanner from '../Components/PageBanner';
+import AppInstall from "../Components/AppInstall";
+
 const About = () => {
   return (
     <>
       <PageBanner 
         title="ABOUT OUR STORY" 
         subtitle="About Us" 
-        bgImage="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80"
+        bgImage="/icon/assets/hero/hero3.avif"
       />
      <AboutUs/>
         <Stats />
      <Testimonials />
+     <AppInstall />
     </>
    
   )

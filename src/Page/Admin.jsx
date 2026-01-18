@@ -25,17 +25,13 @@ const Admin = () => {
   const [vehicles, setVehicles] = useState([]);
 
   const categories = ["CAR", "VAN", "BIKE", "LORRY", "BUS", "CAB", "THREE WHEEL", "WEDDING CARS"];
-  // const fuelTypes = ["Petrol", "Diesel", "Hybrid", "Electric"];
-  // const transmissions = ["Auto", "Manual"];
 
   const [newVehicle, setNewVehicle] = useState({
     name: "",
     category: "CAR",
-    // seats: "",
-    // fuelType: "",
-    // transmission: "",
+
     images: [null, null, null, null],
-    kmPrices: { "1 Km": "", "2 Km": "", "3 Km": "", "4 Km": "", "5 Km": "" },
+    kmPrices: { "1 Km": "","100 Km": "", "200 Km": "","250 Km": "", "300 Km": "","350 Km": "", "400 Km": "", "500 Km": "","Unlimited Km": "", },
     available: true,
   });
 
@@ -263,52 +259,6 @@ const Admin = () => {
                       </option>
                     ))}
                   </select>
-                </div>
-
-                {/* NEW FIELDS: SEATS, FUEL, TRANSMISSION */}
-                <div className="grid grid-cols-1 gap-4 py-2 border-y border-gray-100">
-                  <div className="grid grid-cols-2 gap-2">
-                    {/* <input
-                      type="number"
-                      placeholder="Seats (e.g. 4)"
-                      className="p-3 bg-gray-50 rounded-xl text-sm outline-none focus:ring-1 focus:ring-yellow-400"
-                      value={newVehicle.seats}
-                      onChange={(e) =>
-                        setNewVehicle({ ...newVehicle, seats: e.target.value })
-                      }
-                    /> */}
-                    {/* <select
-                      className="p-3 bg-gray-50 rounded-xl text-sm outline-none focus:ring-1 focus:ring-yellow-400"
-                      value={newVehicle.transmission}
-                      onChange={(e) =>
-                        setNewVehicle({
-                          ...newVehicle,
-                          transmission: e.target.value,
-                        })
-                      }
-                    >
-                      <option value="">Transmission</option>
-                      {transmissions.map((t) => (
-                        <option key={t} value={t}>
-                          {t}
-                        </option>
-                      ))}
-                    </select> */}
-                  </div>
-                  {/* <select
-                    className="w-full p-3 bg-gray-50 rounded-xl text-sm outline-none focus:ring-1 focus:ring-yellow-400"
-                    value={newVehicle.fuelType}
-                    onChange={(e) =>
-                      setNewVehicle({ ...newVehicle, fuelType: e.target.value })
-                    }
-                  >
-                    <option value="">Select Fuel Type</option>
-                    {fuelTypes.map((f) => (
-                      <option key={f} value={f}>
-                        {f}
-                      </option>
-                    ))}
-                  </select> */}
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">

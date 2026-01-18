@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PageBanner from "../Components/PageBanner";
 import { FaPhoneVolume, FaLocationArrow } from "react-icons/fa";
+import AppInstall from "../Components/AppInstall";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ const Contact = () => {
       <PageBanner
         title="LET'S CONNECT"
         subtitle="Contact Us"
-        bgImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+        bgImage="/icon/assets/hero/hero3.avif"
       />
 
       <div className="py-16 md:py-24 px-6 max-w-7xl mx-auto">
@@ -176,6 +177,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <AppInstall />
     </div>
   );
 };

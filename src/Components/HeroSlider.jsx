@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const slides = [
   {
     image:
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80",
+      "/icon/assets/hero/hero1.avif",
     tag: "Premium Travel Service",
     title:
       'JOURNEY BEYOND <br/><span class="text-yellow-500">BOUNDARIES</span>',
@@ -12,7 +12,7 @@ const slides = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1920&q=80",
+      "/icon/assets/hero/hero2.avif",
     tag: "Available 24/7",
     title: 'DRIVE YOUR <br/><span class="text-yellow-500">DREAMS</span>',
     desc: "From airport drops to wedding cars, find the perfect ride for every occasion in our massive fleet.",
@@ -20,7 +20,7 @@ const slides = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80",
+      "/icon/assets/hero/hero3.avif",
     tag: "Trusted by Thousands",
     title: 'EXPLORE THE <br/><span class="text-yellow-500">PARADISE</span>',
     desc: "Professional drivers and new vehicles ensure a comfortable journey to every corner of the island.",
@@ -134,7 +134,7 @@ const HeroSlider = () => {
       ))}
 
       {/* Floating Info Badge - Glassmorphism */}
-      <div className="absolute bottom-12 right-6 md:right-12 z-20 hidden sm:block animate-float">
+      {/* <div className="absolute bottom-12 right-6 md:right-12 z-20 hidden sm:block animate-float">
         <div className="glass p-6 md:p-8 rounded-[2.5rem] flex items-center gap-6 shadow-2xl">
           <div className="flex -space-x-4">
             {[1, 2, 3].map((i) => (
@@ -163,7 +163,7 @@ const HeroSlider = () => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Slide Navigation Progress Bars */}
       <div className="absolute bottom-12 left-6 md:left-12 z-20 flex flex-col gap-6">
