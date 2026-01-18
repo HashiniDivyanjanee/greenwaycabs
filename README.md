@@ -30,5 +30,5 @@ An attractive and user-friendly interface that works perfectly on mobile phones,
 
 | Home Page | Vehicle Detail | Booking Form |
 | :---: | :---: | :---: |
-| ![Home](https://via.placeholder.com/300x600?text=Home+Page) | ![Detail](https://via.placeholder.com/300x600?text=Vehicle+Detail) | ![Booking](https://via.placeholder.com/300x600?text=Booking+Form) |
+| ![Home]![App Screenshot](public/icon/assets/Screenshot/1.png) | ![About Us]![App Screenshot](public/icon/assets/Screenshot/2.png) | ![Vehicle]![App Screenshot](public/icon/assets/Screenshot/3.png) |
 
