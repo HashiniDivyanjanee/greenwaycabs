@@ -3,9 +3,6 @@
 Greenway Travels & Cab Service is a premium vehicle rental and taxi service based in the Polonnaruwa area.
 This web application allows customers to easily select their preferred vehicle and make instant bookings via WhatsApp with just a few clicks.
 
-![Project Banner](https://via.placeholder.com/1000x400?text=Greenway+Travels+And+Cab+Service+Banner)
-*(ඔබේ වෙබ් අඩවියේ Screenshot එකක් මෙතැනට ඇඩ් කරන්න)*
-
 ## 🚀 Features
 
 - Wide Range of Vehicles
@@ -29,7 +26,7 @@ An attractive and user-friendly interface that works perfectly on mobile phones,
 
 ## 📸 Screenshots
 
-| Home Page | Vehicle Detail | Booking Form |
-| :---: | :---: | :---: |
-| ![Home](https://via.placeholder.com/300x600?text=Home+Page) | ![Detail](https://via.placeholder.com/300x600?text=Vehicle+Detail) | ![Booking](https://via.placeholder.com/300x600?text=Booking+Form) |
+| Home Page | About Us | Vehicle | Gallery | Contact | Vehicle Details |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| ![App Screenshot](public/icon/assets/Screenshot/1.png) | ![App Screenshot](public/icon/assets/Screenshot/2.png) | ![App Screenshot](public/icon/assets/Screenshot/3.png) | ![App Screenshot](public/icon/assets/Screenshot/4.png) | ![App Screenshot](public/icon/assets/Screenshot/5.png) | ![App Screenshot](public/icon/assets/Screenshot/6.png)|
 
