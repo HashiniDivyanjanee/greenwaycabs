@@ -28,7 +28,7 @@ An attractive and user-friendly interface that works perfectly on mobile phones,
 
 ## 📸 Screenshots
 
-| Home Page | Vehicle Detail | Booking Form |
-| :---: | :---: | :---: |
-| ![Home]![App Screenshot](public/icon/assets/Screenshot/1.png) | ![About Us]![App Screenshot](public/icon/assets/Screenshot/2.png) | ![Vehicle]![App Screenshot](public/icon/assets/Screenshot/3.png) |
+| Home Page | About Us | Vehicle | Gallery | Contact | Vehicle Details |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| ![App Screenshot](public/icon/assets/Screenshot/1.png) | ![App Screenshot](public/icon/assets/Screenshot/2.png) | ![App Screenshot](public/icon/assets/Screenshot/3.png) | ![App Screenshot](public/icon/assets/Screenshot/4.png) | ![App Screenshot](public/icon/assets/Screenshot/5.png) | ![App Screenshot](public/icon/assets/Screenshot/6.png)|
 
