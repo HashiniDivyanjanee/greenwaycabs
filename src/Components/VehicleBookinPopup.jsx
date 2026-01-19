@@ -72,6 +72,7 @@ Note: I am sending the deposit slip via the next message.
     const encodedMessage = encodeURIComponent(message);
      const whatsappUrl = `https://wa.me/94718928844?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
+    
     onClose();
   };
 
