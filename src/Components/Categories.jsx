@@ -13,6 +13,14 @@ const cats = [
     image: "/icon/category/tuktuk.png",
     label: "THREE WHEEL",
   },
+  {
+    image: "/icon/category/every.png",
+    label: "WAGON R",
+  },
+  {
+    image: "/icon/category/wagon.png",
+    label: "EVERY",
+  },
  {
     image: "/icon/category/wedding-car.png",
     label: "WEDDING CAR",
@@ -42,7 +50,7 @@ const Categories = ({ selectedCategory, onSelectCategory }) => {
           <div className="w-12 h-1 bg-yellow-500 mt-2 rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-3 md:gap-4">
+        <div className="flex flex-wrap justify-center gap-3 md:gap-5 max-w-[1050px] mx-auto">
           {cats.map((cat, idx) => {
             const Icon = cat.icon;
             return (

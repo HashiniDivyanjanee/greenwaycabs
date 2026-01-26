@@ -103,16 +103,17 @@ Note: I am sending the deposit slip via the next message.
             <div className="grid grid-cols-2 gap-4 bg-yellow-50 p-4 rounded-2xl">
               <div>
                 <label className="text-[10px] font-black uppercase text-yellow-600">
-                  Vehicle
-                </label>
-                <div className="font-bold text-sm">{formData.vehicleModel}</div>
-              </div>
-              <div>
-                <label className="text-[10px] font-black uppercase text-yellow-600">
                   Category
                 </label>
                 <div className="font-bold text-sm">{formData.category}</div>
               </div>
+              <div>
+                <label className="text-[10px] font-black uppercase text-yellow-600">
+                  Model
+                </label>
+                <div className="font-bold text-sm">{formData.vehicleModel}</div>
+              </div>
+              
             </div>
 
             {/* Field: Customer Name */}

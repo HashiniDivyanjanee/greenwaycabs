@@ -7,7 +7,7 @@ const About = () => {
     <div className="bg-white">
     
       
-      <section className="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+      <section className="py-16 md:py-20 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="order-2 lg:order-1">
             <span className="text-yellow-500 font-black text-xs md:text-sm uppercase tracking-[0.3em] mb-4 block">Who We Are</span>

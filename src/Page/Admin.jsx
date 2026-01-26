@@ -24,7 +24,7 @@ const Admin = () => {
 
   const [vehicles, setVehicles] = useState([]);
 
-  const categories = ["CAR", "VAN", "BIKE", "LORRY", "BUS", "CAB", "THREE WHEEL", "WEDDING CARS"];
+  const categories = ["CAR", "VAN", "BIKE", "LORRY", "BUS", "CAB", "THREE WHEEL", "WAGON R", "EVERY", "WEDDING CARS"];
 
   const [newVehicle, setNewVehicle] = useState({
     name: "",
